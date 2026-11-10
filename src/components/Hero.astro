@@ -1,0 +1,329 @@
+---
+// Hero.astro — Immediate rebrand notice and directional gateway
+---
+
+<section class="section-wrapper section-wrapper--hero hero" id="top" aria-labelledby="hero-title">
+  <div class="shell">
+    <!-- Notice Bar / Metadata annotation -->
+
+    <!-- Main Typographic Composition -->
+    <div class="hero-content">
+      <h1 id="hero-title" class="hero-headline">
+        <span class="hl-origin">Archex Web</span>
+        <span class="hl-pivot">is now</span>
+        <span class="hl-destination">Archex Craft<span class="hl-dot">.</span></span>
+      </h1>
+
+      <!-- Typographic Evolution Pathway Graphic -->
+      <div class="evolution-pathway" aria-hidden="true">
+        <div class="path-node path-node--origin">
+          <span class="path-code">PREV</span>
+          <span class="path-title">Archex Web</span>
+        </div>
+
+        <div class="path-connector">
+          <svg class="path-svg" viewBox="0 0 320 28" fill="none" preserveAspectRatio="none">
+            <!-- Background base line -->
+            <line x1="0" y1="14" x2="320" y2="14" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 4" />
+            <!-- Animated flowing line -->
+            <line class="path-flow-line" x1="0" y1="14" x2="320" y2="14" stroke="var(--signal)" stroke-width="1.5" />
+            <!-- Directional chevron -->
+            <polygon points="314,9 320,14 314,19" fill="var(--signal)" />
+          </svg>
+          <span class="path-status-badge">Evolution</span>
+        </div>
+
+        <div class="path-node path-node--dest">
+          <span class="path-code">NEW</span>
+          <span class="path-title">Archex Craft</span>
+        </div>
+      </div>
+
+      <!-- Supporting Editorial Copy -->
+      <p class="hero-description">
+        The work continues under a new name. Discover Archex Craft — where we build thoughtful digital products, intelligent systems and software experiences.
+      </p>
+
+      <!-- Action Button Cluster -->
+      <div class="hero-actions">
+        <a
+          href="https://craft.archexweb.in/"
+          class="btn-base btn-primary cta-craft"
+          title="Go to Archex Craft — Digital Products & Engineering"
+        >
+          <span>Go to Archex Craft</span>
+          <span class="btn-arrow" aria-hidden="true">↗</span>
+        </a>
+
+        <a
+          href="https://studio.archexweb.in/"
+          class="btn-base btn-secondary cta-studio"
+          title="Explore Archex Studio — Brand & Digital Experience"
+        >
+          <span>Explore Archex Studio</span>
+          <span class="btn-arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <!-- Supplementary Archive Link & Editorial Microcopy -->
+      <div class="hero-subtext-row">
+        <a
+          href="https://studio.archexweb.in/work/"
+          class="hero-archive-link"
+          title="Explore Archex Studio Work Archive"
+        >
+          <span>Curious about the creative work? Explore the Studio <span class="no-break">archive <span class="link-arrow" aria-hidden="true">→</span></span></span>
+        </a>
+        <span class="editorial-note hero-tagline">“Same thinking. A clearer direction.”</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .hero-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: clamp(28px, 4vw, 44px);
+    flex-wrap: wrap;
+  }
+
+  .hero-meta-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+  }
+
+  .hero-content {
+    max-width: 960px;
+  }
+
+  .hero-headline {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(38px, 6.2vw, 84px);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: clamp(24px, 3.5vw, 36px);
+  }
+
+  .hl-origin {
+    color: var(--ink-graphite);
+    display: inline;
+  }
+
+  .hl-pivot {
+    font-style: italic;
+    color: var(--ink-muted);
+    font-family: var(--serif);
+    margin: 0 0.15em;
+    white-space: nowrap;
+  }
+
+  .hl-destination {
+    color: var(--ink);
+    display: inline;
+    position: relative;
+    white-space: nowrap;
+  }
+
+  .hl-dot {
+    color: var(--signal);
+  }
+
+  /* Evolution Pathway Graphic */
+  .evolution-pathway {
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(10px, 2vw, 20px);
+    margin-bottom: clamp(24px, 3.5vw, 36px);
+    padding: 10px 16px;
+    background-color: rgba(20, 20, 19, 0.025);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    max-width: 100%;
+  }
+
+  .path-node {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .path-code {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .path-title {
+    font-family: var(--sans);
+    font-size: clamp(12px, 1.2vw, 14px);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  .path-node--origin .path-title {
+    color: var(--ink-graphite);
+    text-decoration: line-through;
+    text-decoration-color: var(--line-strong);
+    text-decoration-thickness: 1.5px;
+  }
+
+  .path-node--dest .path-title {
+    color: var(--ink);
+  }
+
+  .path-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 120px;
+    flex: 1 1 auto;
+    position: relative;
+  }
+
+  .path-svg {
+    width: 100%;
+    height: 18px;
+    overflow: visible;
+  }
+
+  .path-flow-line {
+    stroke-dasharray: 20 60;
+    stroke-dashoffset: 0;
+    animation: flowLine 3.2s linear infinite;
+  }
+
+  @keyframes flowLine {
+    to {
+      stroke-dashoffset: -80;
+    }
+  }
+
+  .path-status-badge {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--signal);
+    background-color: var(--signal-tint);
+    padding: 1px 6px;
+    border-radius: 2px;
+  }
+
+  /* Description */
+  .hero-description {
+    font-size: clamp(18px, 1.9vw, 23px);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 740px;
+    margin-bottom: clamp(32px, 4.5vw, 44px);
+  }
+
+  /* Action Buttons */
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: clamp(28px, 4vw, 38px);
+  }
+
+  .cta-craft {
+    padding: 15px 28px;
+    font-size: 16px;
+  }
+
+  .cta-studio {
+    padding: 15px 26px;
+    font-size: 16px;
+  }
+
+  /* Subtext Row */
+  .hero-subtext-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-top: 18px;
+    border-top: 1px dashed var(--line);
+  }
+
+  .hero-archive-link {
+    font-family: var(--sans);
+    font-size: clamp(14px, 1.2vw, 15px);
+    color: var(--ink-graphite);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--line-strong);
+    transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+  }
+
+  .hero-archive-link:hover {
+    color: var(--signal);
+    text-decoration-color: var(--signal);
+  }
+
+  .no-break {
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .link-arrow {
+    font-family: var(--mono);
+    transition: transform var(--transition-fast);
+  }
+
+  .hero-archive-link:hover .link-arrow {
+    transform: translateX(4px);
+  }
+
+  .hero-tagline {
+    font-size: clamp(15px, 1.3vw, 17px);
+  }
+
+  @media (max-width: 640px) {
+    .hl-destination {
+      white-space: normal;
+    }
+    .evolution-pathway {
+      width: 100%;
+      justify-content: space-between;
+    }
+    .path-connector {
+      min-width: 60px;
+    }
+    .hero-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .hero-actions .btn-base {
+      width: 100%;
+    }
+    .hero-subtext-row {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+</style>

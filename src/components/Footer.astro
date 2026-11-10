@@ -1,0 +1,204 @@
+---
+// Footer.astro — Refined, editorial footer with exact destination URLs
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer" role="contentinfo">
+  <div class="shell">
+    <div class="footer-main">
+      <!-- Left Column: Wordmark & Practice Definition -->
+      <div class="footer-left">
+        <a href="#top" class="footer-wordmark" aria-label="Archex — Back to top">
+          archex<span class="wordmark-dot">.</span>
+        </a>
+        <p class="footer-tagline">
+          An evolving practice in digital craft and creative experience.
+        </p>
+      </div>
+
+      <!-- Right Column: Exact Destination URLs -->
+      <nav class="footer-nav" aria-label="Ecosystem destinations">
+        <div class="footer-nav-group">
+          <span class="footer-group-label">Destinations</span>
+          <ul class="footer-links">
+            <li>
+              <a
+                href="https://craft.archexweb.in/"
+                class="footer-link"
+                title="Go to Archex Craft — Digital Products & Engineering"
+              >
+                <span>Archex Craft</span>
+                <span class="footer-arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://studio.archexweb.in/"
+                class="footer-link"
+                title="Explore Archex Studio — Brand & Digital Experience"
+              >
+                <span>Archex Studio</span>
+                <span class="footer-arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://studio.archexweb.in/work/"
+                class="footer-link"
+                title="Explore selected projects in the Studio Work Archive"
+              >
+                <span>Studio Work</span>
+                <span class="footer-arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Bottom Line with Dynamic Year -->
+    <div class="footer-bottom">
+      <p class="copyright-line">
+        © <span id="copyright-year">{currentYear}</span> Archex. All directions lead forward.
+      </p>
+      <span class="footer-domain-note" aria-hidden="true">archexweb.in</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Ensure the copyright year is always strictly up-to-date client-side as well
+  const yearEl = document.getElementById('copyright-year');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear().toString();
+  }
+</script>
+
+<style>
+  .site-footer {
+    padding-top: clamp(48px, 7vw, 76px);
+    padding-bottom: clamp(32px, 5vw, 48px);
+    background-color: var(--paper);
+    border-top: 1px solid var(--line);
+  }
+
+  .footer-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: clamp(40px, 6vw, 64px);
+    flex-wrap: wrap;
+  }
+
+  .footer-left {
+    max-width: 380px;
+  }
+
+  .footer-wordmark {
+    font-family: var(--serif);
+    font-size: clamp(26px, 2.6vw, 32px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+
+  .wordmark-dot {
+    color: var(--signal);
+  }
+
+  .footer-tagline {
+    font-size: clamp(14px, 1.3vw, 15px);
+    line-height: 1.5;
+    color: var(--ink-graphite);
+  }
+
+  .footer-nav {
+    display: flex;
+    gap: clamp(28px, 4vw, 48px);
+  }
+
+  .footer-nav-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .footer-group-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-link {
+    font-family: var(--sans);
+    font-size: clamp(14px, 1.2vw, 15px);
+    font-weight: 500;
+    color: var(--ink-soft);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: color var(--transition-fast);
+  }
+
+  .footer-link:hover {
+    color: var(--signal);
+  }
+
+  .footer-arrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-muted);
+    transition: transform var(--transition-fast), color var(--transition-fast);
+  }
+
+  .footer-link:hover .footer-arrow {
+    transform: translate(2px, -2px);
+    color: var(--signal);
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--line-soft);
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .copyright-line {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: var(--ink-muted);
+  }
+
+  .footer-domain-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+  }
+
+  @media (max-width: 640px) {
+    .footer-main {
+      flex-direction: column;
+      gap: 32px;
+    }
+  }
+</style>
+

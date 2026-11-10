@@ -1,0 +1,81 @@
+---
+// BaseLayout.astro — Main HTML shell, SEO, accessibility & typography links
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = 'Archex — Craft and Studio',
+  description = 'Archex Web is now Archex Craft. Discover Archex Craft for digital products and engineering, and Archex Studio for brand and digital experiences.',
+  canonical = 'https://www.archexweb.in/',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Archex" />
+    <meta property="og:image" content="https://www.archexweb.in/og-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#F5F2EB" />
+
+    <!-- Font Preloads for performance -->
+    <link
+      rel="preload"
+      href="/fonts/dm-serif-display.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/instrument-sans-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+  </head>
+  <body>
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Subtle Architectural Background Grid -->
+    <div class="bg-grid-overlay" aria-hidden="true"></div>
+
+    <!-- Navigation Header -->
+    <Header />
+
+    <!-- Main Content Shell -->
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+
+    <!-- Refined Footer -->
+    <Footer />
+  </body>
+</html>
+

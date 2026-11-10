@@ -1,0 +1,523 @@
+---
+// SignatureVisual.astro — Two directions, one name: Central visual artwork
+---
+
+<section class="section-wrapper signature-section" id="signature" aria-labelledby="sig-title">
+  <div class="shell">
+    <!-- Header / Editorial Framing -->
+    <div class="sig-header">
+      <div class="sig-tag-row">
+        <span class="tech-tag tech-tag--signal">Visual Signature</span>
+        <span class="sig-coord" aria-hidden="true">AX-ORIGIN // 00°00′N 00°00′E</span>
+      </div>
+      <h2 id="sig-title" class="sig-headline">
+        Two directions, one name.
+      </h2>
+      <p class="sig-subtitle">
+        A single foundation diverging into specialized disciplines. Engineered software on one path; visual identity on the other.
+      </p>
+    </div>
+
+    <!-- The Interactive Artwork Canvas -->
+    <div class="artwork-canvas" id="interactive-canvas">
+      <div class="canvas-telemetry-top">
+        <span class="telemetry-item" id="telemetry-status">STATUS: COHERENT</span>
+        <span class="telemetry-item telemetry-center">“One name. Two expressions.”</span>
+        <span class="telemetry-item" id="telemetry-mode">MODE: VECTOR HARMONY</span>
+      </div>
+
+      <!-- =================================================================
+           DESKTOP / TABLET SVG GRAPHIC SYSTEM (Horizontal Flow)
+           ================================================================= -->
+      <div class="svg-container svg-container--desktop">
+        <svg
+          class="signature-svg signature-svg--desktop"
+          viewBox="0 0 1000 480"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          aria-label="Visual artwork illustrating the divergence of Archex into Craft and Studio from one central brand core"
+        >
+          <defs>
+            <pattern id="sig-fine-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+              <path d="M 24 0 L 0 0 0 24" fill="none" stroke="rgba(20, 20, 19, 0.04)" stroke-width="0.5" />
+              <circle cx="24" cy="24" r="0.75" fill="rgba(20, 20, 19, 0.12)" />
+            </pattern>
+
+            <linearGradient id="craft-line-grad" x1="500" y1="240" x2="160" y2="240" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="var(--ink)" />
+              <stop offset="100%" stop-color="var(--craft-accent)" />
+            </linearGradient>
+
+            <linearGradient id="studio-line-grad" x1="500" y1="240" x2="840" y2="240" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="var(--ink)" />
+              <stop offset="100%" stop-color="var(--signal)" />
+            </linearGradient>
+
+            <!-- Minimal subtle glow filters for node hover (preserves exact coordinates without shifting) -->
+            <filter id="craft-node-glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="rgba(37, 75, 115, 0.16)" />
+            </filter>
+
+            <filter id="studio-node-glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="rgba(156, 62, 47, 0.16)" />
+            </filter>
+          </defs>
+
+          <!-- Canvas Background -->
+          <rect width="1000" height="480" fill="url(#sig-fine-grid)" rx="6" />
+          <rect width="1000" height="480" fill="none" stroke="var(--line)" stroke-width="1.5" rx="6" />
+
+          <!-- Outer Boundary Crosshairs & Ticks -->
+          <g stroke="var(--line-strong)" stroke-width="1" opacity="0.6">
+            <line x1="30" y1="20" x2="30" y2="40" />
+            <line x1="20" y1="30" x2="40" y2="30" />
+            <line x1="970" y1="20" x2="970" y2="40" />
+            <line x1="960" y1="30" x2="980" y2="30" />
+            <line x1="30" y1="440" x2="30" y2="460" />
+            <line x1="20" y1="450" x2="40" y2="450" />
+            <line x1="970" y1="440" x2="970" y2="460" />
+            <line x1="960" y1="450" x2="980" y2="450" />
+          </g>
+
+          <!-- Dynamic Axis Grid Lines -->
+          <line x1="120" y1="240" x2="880" y2="240" stroke="var(--line-soft)" stroke-width="1" stroke-dasharray="2 4" />
+          <line x1="500" y1="60" x2="500" y2="420" stroke="var(--line-soft)" stroke-width="1" stroke-dasharray="2 4" />
+
+          <!-- BRANCH 01: CRAFT (WEST) -->
+          <g class="branch-group branch-craft" id="branch-craft-group">
+            <path
+              class="sig-path sig-path--craft"
+              d="M 500 240 L 360 240 L 260 160 L 150 160"
+              stroke="url(#craft-line-grad)"
+              stroke-width="2"
+            />
+            <path
+              class="sig-pulse sig-pulse--craft"
+              d="M 500 240 L 360 240 L 260 160 L 150 160"
+              stroke="var(--craft-accent)"
+              stroke-width="2.5"
+              stroke-dasharray="16 140"
+            />
+            <path
+              d="M 360 240 L 290 320 L 160 320"
+              stroke="var(--line)"
+              stroke-width="1.5"
+              stroke-dasharray="4 4"
+            />
+
+            <a href="https://craft.archexweb.in/" transform="translate(80, 105)" class="interactive-node" id="craft-node" aria-label="Visit Archex Craft — Digital Products & Engineering">
+              <rect class="node-bg" width="140" height="95" rx="3" fill="#ffffff" stroke="var(--line-strong)" stroke-width="1.5" />
+              <rect class="node-header" x="0" y="0" width="140" height="24" rx="3" fill="var(--craft-ink)" />
+              <text x="12" y="16" font-family="var(--mono)" font-size="9.5" fill="#ffffff" letter-spacing="1">01 // CRAFT</text>
+              <circle cx="126" cy="12" r="3.5" fill="var(--signal)" />
+              
+              <rect x="12" y="34" width="44" height="18" rx="2" fill="var(--paper-soft)" stroke="var(--line)" stroke-width="1" />
+              <text x="18" y="46" font-family="var(--mono)" font-size="7.5" fill="var(--craft-accent)">MODULAR</text>
+
+              <rect x="62" y="34" width="66" height="18" rx="2" fill="var(--paper-soft)" stroke="var(--line)" stroke-width="1" />
+              <text x="68" y="46" font-family="var(--mono)" font-size="7.5" fill="var(--ink-graphite)">PRECISION</text>
+
+              <text x="12" y="74" font-family="var(--sans)" font-weight="600" font-size="11" fill="var(--ink)">Engineering</text>
+              <text x="12" y="86" font-family="var(--mono)" font-size="8" fill="var(--ink-faint)">SYSTEMS & SOFTWARE</text>
+            </a>
+
+            <circle cx="260" cy="160" r="5" fill="#ffffff" stroke="var(--craft-accent)" stroke-width="2" />
+            <circle cx="260" cy="160" r="2" fill="var(--craft-accent)" />
+            <text x="268" y="155" font-family="var(--mono)" font-size="8" fill="var(--ink-graphite)">GEO_NODE_X</text>
+
+            <circle cx="290" cy="320" r="4" fill="#ffffff" stroke="var(--ink)" stroke-width="1.5" />
+            <text x="160" y="338" font-family="var(--mono)" font-size="8" fill="var(--ink-faint)">COORDINATE: 01.A</text>
+          </g>
+
+          <!-- CENTRAL BRAND HUB: ARCHEX MONOGRAM ANCHOR -->
+          <g class="central-brand-hub" id="hub-group" transform="translate(500, 240)">
+            <circle r="72" stroke="var(--line-soft)" stroke-width="1" />
+            <circle class="ambient-ring" r="54" stroke="var(--line)" stroke-width="1.2" stroke-dasharray="6 6" />
+            <circle r="38" fill="var(--paper-card)" stroke="var(--ink)" stroke-width="2" />
+
+            <g transform="translate(-16, -18) scale(0.065)">
+              <path
+                fill="#141413"
+                fill-rule="evenodd"
+                d="M256 48 L108 464 L176 464 L208 384 L304 384 L336 464 L404 464 Z M224 324 L288 324 L256 232 Z"
+              />
+            </g>
+
+            <text y="28" text-anchor="middle" font-family="var(--serif)" font-size="13" fill="var(--ink)" letter-spacing="0.5">archex.</text>
+          </g>
+
+          <!-- BRANCH 02: STUDIO (EAST) -->
+          <g class="branch-group branch-studio" id="branch-studio-group">
+            <path
+              class="sig-path sig-path--studio"
+              d="M 500 240 L 640 240 L 740 320 L 850 320"
+              stroke="url(#studio-line-grad)"
+              stroke-width="2"
+            />
+            <path
+              class="sig-pulse sig-pulse--studio"
+              d="M 500 240 L 640 240 L 740 320 L 850 320"
+              stroke="var(--signal)"
+              stroke-width="2.5"
+              stroke-dasharray="16 140"
+            />
+            <path
+              d="M 640 240 C 690 170, 770 170, 830 170"
+              stroke="var(--line)"
+              stroke-width="1.5"
+              stroke-dasharray="4 4"
+            />
+
+            <a href="https://studio.archexweb.in/" transform="translate(780, 265)" class="interactive-node" id="studio-node" aria-label="Explore Archex Studio — Brand & Digital Experience">
+              <rect class="node-bg" width="140" height="95" rx="3" fill="#ffffff" stroke="var(--line-strong)" stroke-width="1.5" />
+              <rect class="node-header" x="0" y="0" width="140" height="24" rx="3" fill="var(--signal)" />
+              <text x="12" y="16" font-family="var(--mono)" font-size="9.5" fill="#ffffff" letter-spacing="1">02 // STUDIO</text>
+              <circle cx="126" cy="12" r="3.5" fill="#ffffff" />
+
+              <text x="14" y="52" font-family="var(--serif)" font-size="20" fill="var(--ink)">Aa</text>
+              <circle cx="56" cy="46" r="10" stroke="var(--line)" stroke-width="1" />
+              <line x1="56" y1="32" x2="56" y2="60" stroke="var(--line-soft)" stroke-width="0.75" />
+
+              <text x="12" y="74" font-family="var(--sans)" font-weight="600" font-size="11" fill="var(--ink)">Creative Practice</text>
+              <text x="12" y="86" font-family="var(--mono)" font-size="8" fill="var(--signal)">IDENTITY & FORM</text>
+            </a>
+
+            <circle cx="740" cy="320" r="5" fill="#ffffff" stroke="var(--signal)" stroke-width="2" />
+            <circle cx="740" cy="320" r="2" fill="var(--signal)" />
+            <text x="670" y="338" font-family="var(--mono)" font-size="8" fill="var(--signal)">EXP_NODE_Y</text>
+
+            <circle cx="830" cy="170" r="4" fill="#ffffff" stroke="var(--ink)" stroke-width="1.5" />
+            <text x="838" y="174" font-family="var(--mono)" font-size="8" fill="var(--ink-faint)">PROPORTION: 1.618</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- =================================================================
+           MOBILE-OPTIMIZED VERTICAL SVG GRAPHIC SYSTEM (< 640px)
+           ================================================================= -->
+      <div class="svg-container svg-container--mobile" aria-hidden="true">
+        <svg
+          class="signature-svg signature-svg--mobile"
+          viewBox="0 0 320 460"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="320" height="460" fill="url(#sig-fine-grid)" rx="4" />
+          <rect width="320" height="460" fill="none" stroke="var(--line)" stroke-width="1" rx="4" />
+
+          <!-- Center vertical axis -->
+          <line x1="160" y1="30" x2="160" y2="430" stroke="var(--line-soft)" stroke-width="1" stroke-dasharray="3 3" />
+
+          <!-- Top Branch: CRAFT -->
+          <path d="M 160 210 L 160 145" stroke="var(--craft-accent)" stroke-width="2" />
+          <g transform="translate(35, 30)">
+            <rect width="250" height="90" rx="3" fill="#ffffff" stroke="var(--line-strong)" stroke-width="1.5" />
+            <rect x="0" y="0" width="250" height="24" rx="3" fill="var(--craft-ink)" />
+            <text x="12" y="16" font-family="var(--mono)" font-size="10" fill="#ffffff" letter-spacing="1">01 // CRAFT</text>
+            <circle cx="236" cy="12" r="3.5" fill="var(--signal)" />
+            <text x="12" y="48" font-family="var(--sans)" font-weight="600" font-size="14" fill="var(--ink)">Archex Craft — Engineering</text>
+            <text x="12" y="68" font-family="var(--mono)" font-size="9.5" fill="var(--craft-accent)">MODULAR SYSTEMS & SOFTWARE</text>
+          </g>
+
+          <!-- Center Hub: ARCHEX -->
+          <g transform="translate(160, 230)">
+            <circle r="46" fill="var(--paper-card)" stroke="var(--ink)" stroke-width="2" />
+            <circle r="36" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 4" />
+            <g transform="translate(-14, -16) scale(0.055)">
+              <path
+                fill="#141413"
+                fill-rule="evenodd"
+                d="M256 48 L108 464 L176 464 L208 384 L304 384 L336 464 L404 464 Z M224 324 L288 324 L256 232 Z"
+              />
+            </g>
+            <text y="24" text-anchor="middle" font-family="var(--serif)" font-size="11" fill="var(--ink)">archex.</text>
+          </g>
+
+          <!-- Bottom Branch: STUDIO -->
+          <path d="M 160 250 L 160 315" stroke="var(--signal)" stroke-width="2" />
+          <g transform="translate(35, 330)">
+            <rect width="250" height="90" rx="3" fill="#ffffff" stroke="var(--line-strong)" stroke-width="1.5" />
+            <rect x="0" y="0" width="250" height="24" rx="3" fill="var(--signal)" />
+            <text x="12" y="16" font-family="var(--mono)" font-size="10" fill="#ffffff" letter-spacing="1">02 // STUDIO</text>
+            <circle cx="236" cy="12" r="3.5" fill="#ffffff" />
+            <text x="12" y="48" font-family="var(--sans)" font-weight="600" font-size="14" fill="var(--ink)">Archex Studio — Identity</text>
+            <text x="12" y="68" font-family="var(--mono)" font-size="9.5" fill="var(--signal)">BRAND & DIGITAL EXPERIENCE</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Bottom Interactive Legend -->
+      <div class="canvas-legend">
+        <div class="legend-item legend-item--craft">
+          <span class="legend-swatch swatch--craft"></span>
+          <span class="legend-text"><strong>Archex Craft:</strong> Modular Systems, Precision, Engineering</span>
+        </div>
+        <div class="legend-item legend-item--studio">
+          <span class="legend-swatch swatch--studio"></span>
+          <span class="legend-text"><strong>Archex Studio:</strong> Typographic Poise, Identity, Digital Experience</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Subtle interactive feedback on node interaction
+  const craftNode = document.getElementById('craft-node');
+  const studioNode = document.getElementById('studio-node');
+  const telemetryStatus = document.getElementById('telemetry-status');
+  const telemetryMode = document.getElementById('telemetry-mode');
+
+  if (craftNode && telemetryStatus && telemetryMode) {
+    craftNode.addEventListener('mouseenter', () => {
+      telemetryStatus.textContent = 'STATUS: ACTIVE // CRAFT BRANCH';
+      telemetryMode.textContent = 'MODE: MODULAR SYSTEMS';
+      telemetryStatus.style.color = 'var(--craft-accent)';
+    });
+    craftNode.addEventListener('mouseleave', () => {
+      telemetryStatus.textContent = 'STATUS: COHERENT';
+      telemetryMode.textContent = 'MODE: VECTOR HARMONY';
+      telemetryStatus.style.color = '';
+    });
+  }
+
+  if (studioNode && telemetryStatus && telemetryMode) {
+    studioNode.addEventListener('mouseenter', () => {
+      telemetryStatus.textContent = 'STATUS: ACTIVE // STUDIO BRANCH';
+      telemetryMode.textContent = 'MODE: IDENTITY & FORM';
+      telemetryStatus.style.color = 'var(--signal)';
+    });
+    studioNode.addEventListener('mouseleave', () => {
+      telemetryStatus.textContent = 'STATUS: COHERENT';
+      telemetryMode.textContent = 'MODE: VECTOR HARMONY';
+      telemetryStatus.style.color = '';
+    });
+  }
+</script>
+
+<style>
+  .signature-section {
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .sig-header {
+    margin-bottom: clamp(32px, 4.5vw, 48px);
+    max-width: 800px;
+  }
+
+  .sig-tag-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .sig-coord {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+  }
+
+  .sig-headline {
+    font-family: var(--serif);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+
+  .sig-subtitle {
+    font-size: clamp(16px, 1.4vw, 19px);
+    color: var(--ink-graphite);
+    line-height: 1.5;
+  }
+
+  /* Artwork Canvas Container */
+  .artwork-canvas {
+    background-color: var(--paper-soft);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: clamp(16px, 2.5vw, 28px);
+    box-shadow: 0 8px 30px rgba(20, 20, 19, 0.03);
+  }
+
+  .canvas-telemetry-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--line-soft);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    flex-wrap: wrap;
+    gap: 10px;
+    transition: color var(--transition-fast);
+  }
+
+  .telemetry-center {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-graphite);
+    letter-spacing: normal;
+  }
+
+  /* Responsive Display of SVG System */
+  .svg-container--desktop {
+    display: block;
+  }
+
+  .svg-container--mobile {
+    display: none;
+  }
+
+  .signature-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+
+  /* Ambient animations */
+  .ambient-ring {
+    transform-origin: 0 0;
+    animation: rotateSlow 24s linear infinite;
+  }
+
+  @keyframes rotateSlow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .sig-pulse--craft {
+    animation: pulseWest 3.6s ease-in-out infinite;
+  }
+
+  .sig-pulse--studio {
+    animation: pulseEast 3.6s ease-in-out infinite;
+    animation-delay: 1.8s;
+  }
+
+  @keyframes pulseWest {
+    0% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: -156;
+    }
+  }
+
+  @keyframes pulseEast {
+    0% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: -156;
+    }
+  }
+
+  /* Interactive Node minimal, stable hover effect — coordinates stay 100% stationary */
+  .interactive-node {
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+  }
+
+  .interactive-node .node-bg {
+    transition: stroke var(--transition-fast), filter var(--transition-fast);
+  }
+
+  .interactive-node .node-header {
+    transition: opacity var(--transition-fast);
+  }
+
+  /* Craft node minimal hover */
+  #craft-node:hover .node-bg,
+  #craft-node:focus-visible .node-bg {
+    stroke: var(--craft-accent);
+    filter: url(#craft-node-glow);
+  }
+
+  #craft-node:hover .node-header,
+  #craft-node:focus-visible .node-header {
+    opacity: 0.92;
+  }
+
+  /* Studio node minimal hover */
+  #studio-node:hover .node-bg,
+  #studio-node:focus-visible .node-bg {
+    stroke: var(--signal);
+    filter: url(#studio-node-glow);
+  }
+
+  #studio-node:hover .node-header,
+  #studio-node:focus-visible .node-header {
+    opacity: 0.92;
+  }
+
+  /* Canvas Legend */
+  .canvas-legend {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding-top: 16px;
+    margin-top: 16px;
+    border-top: 1px solid var(--line-soft);
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: clamp(12px, 1.1vw, 13.5px);
+    color: var(--ink-graphite);
+  }
+
+  .legend-swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .swatch--craft {
+    background-color: var(--craft-accent);
+  }
+
+  .swatch--studio {
+    background-color: var(--signal);
+  }
+
+  @media (max-width: 640px) {
+    .svg-container--desktop {
+      display: none;
+    }
+    .svg-container--mobile {
+      display: block;
+    }
+    .canvas-telemetry-top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .canvas-legend {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
+</style>
