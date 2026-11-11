@@ -1,23 +1,31 @@
-# Archex — The Brand's Digital Gateway
+# Archex — Website & Gateway
 
-The official brand gateway for **archexweb.in**.
+The official parent-brand website and central ecosystem gateway for **[archexweb.in](https://www.archexweb.in/)**.
 
-This static website serves as a lightweight, elegant portal to the Archex ecosystem, communicating the transition of **Archex Web** to **Archex Craft** and directing visitors to both **Archex Craft** (digital products & engineering) and **Archex Studio** (brand & digital experience).
+Archex operates as the parent brand bringing together three distinct, complementary practices:
+1. **Archex Craft** (`craft.archexweb.in`) — Thoughtful software engineering, web applications, and digital product development.
+2. **Archex Studio** (`studio.archexweb.in`) — Brand identity, creative direction, UI/UX, and digital experiences.
+3. **Archex GTM** (`gtm.archexweb.in` via parent contact gateway) — Go-to-market strategy, positioning, launch planning, and growth execution.
 
 ---
 
-## Brand Architecture & Mandatory Destinations
+## Brand Positioning & Operating Philosophy
 
-- **Brand Name**: `Archex` (wordmark: `archex.`)
-- **Core Message**: *"Archex Web is now Archex Craft."*
+- **Overarching Tagline**: *Archex — Independent thinking. Purposeful execution.*
+- **Mission**: Archex brings together technology, creative thinking and go-to-market expertise to help ideas become meaningful products, experiences and businesses.
+- **Engagement Model**: Collaborative framework, independent engagement. Clients may engage individual practices independently, or bring them together for multidisciplinary execution.
 
-### Destinations
-1. **Archex Craft (Primary)**: [`https://craft.archexweb.in/`](https://craft.archexweb.in/)  
-   *01 / DIGITAL PRODUCTS & ENGINEERING* — Product engineering, intelligent systems, and software experiences.
-2. **Archex Studio (Creative Practice)**: [`https://studio.archexweb.in/`](https://studio.archexweb.in/)  
-   *02 / BRAND & DIGITAL EXPERIENCE* — Visual identity, design systems, and digital experiences.
-3. **Studio Work Archive**: [`https://studio.archexweb.in/work/`](https://studio.archexweb.in/work/)  
-   Selected work archive from Archex Studio.
+---
+
+## Ecosystem Destinations
+
+| Practice | Scope | Live Destination |
+| :--- | :--- | :--- |
+| **Archex Craft** | Software engineering & digital systems | [`https://craft.archexweb.in/`](https://craft.archexweb.in/) |
+| **Archex Studio** | Brand identity & digital experiences | [`https://studio.archexweb.in/`](https://studio.archexweb.in/) |
+| **Archex GTM** | Go-to-market strategy & execution | Direct parent enquiry: [`https://gtm.archexweb.in`](https://www.archexweb.inhttps://gtm.archexweb.in) |
+
+*Note: No fabricated destination URL is deployed for Archex GTM until its dedicated digital property is established.*
 
 ---
 
@@ -25,10 +33,10 @@ This static website serves as a lightweight, elegant portal to the Archex ecosys
 
 - **Framework**: [Astro](https://astro.build/) (Static Mode)
 - **Language**: TypeScript (`astro/tsconfigs/strict`)
-- **Styling**: Native Custom CSS with CSS variables, fluid typography (`clamp()`), and responsive layouts
-- **Vector Graphics**: Native SVG geometry and architectural diagrams
-- **Animation**: Native CSS transitions, keyframe pulses, and accessible motion (`prefers-reduced-motion`)
-- **Verification**: [Playwright](https://playwright.dev/) End-to-End & Multi-device responsive test suite
+- **Styling**: Native CSS with design tokens, fluid typography (`clamp()`), and responsive layouts
+- **Fonts**: Locally hosted self-contained WOFF2 typefaces (`DM Serif Display`, `Instrument Sans`)
+- **Accessibility**: WCAG 2.2 AA compliant, skip link, accessible mobile drawer with keyboard focus trap and Escape key listener
+- **Verification**: [Playwright](https://playwright.dev/) End-to-End test suite across multiple viewports (320px to 1920px)
 
 ---
 
@@ -37,87 +45,83 @@ This static website serves as a lightweight, elegant portal to the Archex ecosys
 ```
 Archex/
 ├── public/
-│   ├── favicon.svg              # Archex monolithic arch vector favicon
-│   ├── robots.txt               # Production crawl directives
-│   └── fonts/                   # Locally hosted WOFF2 brand typefaces
-│       ├── dm-serif-display.woff2
-│       ├── instrument-sans-400.woff2
-│       ├── instrument-sans-500.woff2
-│       └── instrument-sans-600.woff2
+│   ├── favicon.svg               # Archex arch vector favicon
+│   ├── robots.txt                # Production crawl directives & sitemap pointer
+│   ├── sitemap.xml               # Complete production XML sitemap
+│   ├── _redirects                # Legacy routing & permanent 301 redirects
+│   └── fonts/                    # Locally hosted WOFF2 brand typefaces
 ├── src/
 │   ├── components/
-│   │   ├── Header.astro         # Minimalist navigation
-│   │   ├── Hero.astro           # Rebrand announcement & evolution pathway
-│   │   ├── Destinations.astro   # Craft & Studio asymmetric presentation
-│   │   ├── SignatureVisual.astro# Interactive "Two directions, one name" artwork
-│   │   ├── Closing.astro        # Graceful closing & destination pathways
-│   │   └── Footer.astro         # Wordmark, links & dynamic copyright
+│   │   ├── Header.astro          # Navigation with accessible mobile drawer
+│   │   ├── Hero.astro            # Editorial headline & 3-discipline overview
+│   │   ├── Practices.astro       # Equal 3-practice cards (Craft, Studio, GTM)
+│   │   ├── CollaborationFramework.astro # Flow: Strategy → Design → Engineering → Market
+│   │   ├── AboutSection.astro    # Homepage ecosystem overview & 4 pillars
+│   │   ├── ContactCTA.astro      # Closing enquiry invitation
+│   │   └── Footer.astro          # Identity, destinations, legal & dynamic copyright
 │   ├── layouts/
-│   │   └── BaseLayout.astro     # Semantic shell, SEO meta, OG tags
+│   │   └── BaseLayout.astro      # Shell, SEO meta, OG tags, Schema.org Organization JSON-LD
 │   ├── pages/
-│   │   └── index.astro          # Continuous gateway homepage
+│   │   ├── index.astro           # Continuous homepage
+│   │   ├── about.astro           # Detailed about page & ecosystem philosophy
+│   │   ├── contact.astro         # 8-field accessible enquiry form with validation & consent
+│   │   ├── privacy.astro         # Privacy policy with purpose-specific consent
+│   │   ├── terms.astro           # Terms of service governing ecosystem usage
+│   │   └── 404.astro             # Custom accessible 404 not found page
 │   └── styles/
-│       └── global.css           # Archex design tokens & global styles
+│       └── global.css            # Archex design tokens, form system & global styles
 ├── tests/
 │   └── e2e/
-│       ├── gateway.spec.ts      # Content, destination links & branding tests
-│       └── responsive-screenshots.spec.ts # 8-viewport responsive audits & captures
+│       ├── gateway.spec.ts       # 18 Parent brand governance, content & form tests
+│       └── responsive-screenshots.spec.ts # Multi-viewport responsive audits & captures
 ├── artifacts/
-│   └── screenshots/             # High-resolution multi-device captures
-├── astro.config.mjs             # Static configuration
-├── playwright.config.ts         # Playwright test & webServer configuration
+│   └── screenshots/              # High-resolution multi-device screenshot captures
+├── astro.config.mjs              # Static configuration
+├── playwright.config.ts          # Playwright test & preview webServer configuration
 └── package.json
 ```
 
 ---
 
-## Local Development & Build
-
-### Prerequisites
-- Node.js >= 18 (Tested on Node v24.16.0)
-- npm >= 9
-
-### Commands
+## Local Development & Verification
 
 ```bash
 # 1. Install dependencies
 npm install
 
-# 2. Start local development server
-npm run dev
-
-# 3. Typecheck Astro & TypeScript
+# 2. Typecheck with Astro compiler
 npm run check
 
-# 4. Generate production static build
+# 3. Build production static bundle
 npm run build
 # Output directory: dist/
 
-# 5. Preview production build locally
+# 4. Preview build locally
 npm run preview
 
-# 6. Run Playwright E2E & Responsive Test Suite
+# 5. Run Playwright E2E and screenshot suite
 npm run test:e2e
 ```
 
 ---
 
-## Deployment Instructions
+## Contact Form & Backend Integration
 
-The static build is output to the `dist/` directory and can be deployed to any static host (Vercel, Cloudflare Pages, Netlify, AWS S3 / CloudFront, GitHub Pages):
+The enquiry form on `/contact` is built with:
+- Client-side validation: RFC-standard email check, length requirements, required indicators.
+- Accessibility: `aria-invalid`, `aria-describedby`, error alerts, auto-focus on first error.
+- Anti-spam: Honeypot trap field (`_archex_hp`).
+- Security: Duplicate submission throttling and rate limiting via session hashing.
+- Consent separation: Purpose-specific enquiry processing consent is strictly separate from optional marketing consent.
 
-1. **Build Command**: `npm run build`
-2. **Publish / Output Directory**: `dist`
-3. **Domain Configuration**:
-   - Assign primary/apex domain: `archexweb.in` and `www.archexweb.in`.
-   - Configure a 301 permanent redirect from `archexweb.in` to `https://www.archexweb.in/` (or vice-versa according to your canonical preference).
-4. **Subdomain Isolation**:
-   - Do **NOT** attach root domain to `craft.archexweb.in` or `studio.archexweb.in`.
-   - Both subdomains remain completely separate, untouched deployments.
+### Backend Routing Configuration
+In production environments (e.g., Cloudflare Pages, Netlify, Vercel), connect the form submission handler to your preferred backend service:
+- **Option A (Astro Server / Serverless Endpoint)**: Change `output: 'static'` to `output: 'hybrid'` or deploy an edge function at `/api/contact` sending via Resend / AWS SES.
+- **Option B (Serverless Webhook)**: Dispatch to a secure webhook endpoint (e.g. Zapier, Make, n8n, Slack/Discord notification bot) configured via `CONTACT_WEBHOOK_URL`.
+- **Option C (Hosting Form Handler)**: Cloudflare Workers or Netlify Forms attribute (`data-netlify="true"`).
 
 ---
 
 ## License & Copyright
 
-© 2026 Archex. All directions lead forward.
-
+© 2026 Archex. All rights reserved.

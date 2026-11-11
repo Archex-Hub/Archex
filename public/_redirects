@@ -1,0 +1,15 @@
+# Archex Gateway — Permanent Redirects
+# Canonical Domain & Legacy Route Mappings
+
+# Legacy Practice Direct Shortcuts
+/craft     https://craft.archexweb.in/    301
+/craft/*   https://craft.archexweb.in/    301
+/studio    https://studio.archexweb.in/   301
+/studio/*  https://studio.archexweb.in/   301
+/work      https://studio.archexweb.in/work/ 301
+/work/*    https://studio.archexweb.in/work/ 301
+/gtm       https://gtm.archexweb.in/   301
+/gtm/*     https://gtm.archexweb.in/*   301
+# Clean 404 Fallback for static hosting
+/*         /404                           404
+

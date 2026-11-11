@@ -8,13 +8,66 @@ interface Props {
   title?: string;
   description?: string;
   canonical?: string;
+  ogImage?: string;
+  activePath?: string;
 }
 
 const {
-  title = 'Archex — Craft and Studio',
-  description = 'Archex Web is now Archex Craft. Discover Archex Craft for digital products and engineering, and Archex Studio for brand and digital experiences.',
+  title = 'Archex — Independent thinking. Purposeful execution.',
+  description = 'Archex brings together technology, creative thinking and go-to-market expertise to help ideas become meaningful products, experiences and businesses.',
   canonical = 'https://www.archexweb.in/',
+  ogImage = 'https://www.archexweb.in/og-image.png',
+  activePath = '/',
 } = Astro.props;
+
+// JSON-LD Structured Data: Parent Organization and Practices
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://www.archexweb.in/#organization',
+      name: 'Archex',
+      url: 'https://www.archexweb.in',
+      logo: 'https://www.archexweb.in/favicon.svg',
+      slogan: 'Independent thinking. Purposeful execution.',
+      description:
+        'Archex brings together technology, creative thinking and go-to-market expertise to help ideas become meaningful products, experiences and businesses.',
+      department: [
+        {
+          '@type': 'Organization',
+          name: 'Archex Craft',
+          url: 'https://craft.archexweb.in',
+          description:
+            'Software engineering, digital product development and technical solutions.',
+        },
+        {
+          '@type': 'Organization',
+          name: 'Archex Studio',
+          url: 'https://studio.archexweb.in',
+          description:
+            'Brand identity, creative direction, UI/UX and digital experiences.',
+        },
+        {
+          '@type': 'Organization',
+          name: 'Archex GTM',
+          url: 'https://www.archexweb.inhttps://gtm.archexweb.in',
+          description:
+            'Go-to-market strategy, positioning, launch planning and growth execution.',
+        },
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://www.archexweb.in/#website',
+      url: 'https://www.archexweb.in',
+      name: 'Archex',
+      publisher: {
+        '@id': 'https://www.archexweb.in/#organization',
+      },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -26,18 +79,19 @@ const {
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
-    <!-- Open Graph / Meta -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="Archex" />
-    <meta property="og:image" content="https://www.archexweb.in/og-image.png" />
+    <meta property="og:image" content={ogImage} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -58,6 +112,9 @@ const {
       type="font/woff2"
       crossorigin
     />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
     <!-- Accessibility Skip Link -->
@@ -67,15 +124,14 @@ const {
     <div class="bg-grid-overlay" aria-hidden="true"></div>
 
     <!-- Navigation Header -->
-    <Header />
+    <Header activePath={activePath} />
 
     <!-- Main Content Shell -->
     <main id="main-content" tabindex="-1">
       <slot />
     </main>
 
-    <!-- Refined Footer -->
+    <!-- Footer -->
     <Footer />
   </body>
 </html>
-

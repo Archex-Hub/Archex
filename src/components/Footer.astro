@@ -1,31 +1,35 @@
 ---
-// Footer.astro — Refined, editorial footer with exact destination URLs
+// Footer.astro — Footer: Identity, Ecosystem Destinations, Legal & Dynamic Copyright
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer" role="contentinfo">
   <div class="shell">
     <div class="footer-main">
-      <!-- Left Column: Wordmark & Practice Definition -->
-      <div class="footer-left">
-        <a href="#top" class="footer-wordmark" aria-label="Archex — Back to top">
+      <!-- Left Column: Wordmark & Description -->
+      <div class="footer-brand-col">
+        <a href="/" class="footer-wordmark" aria-label="Archex — Home">
           archex<span class="wordmark-dot">.</span>
         </a>
-        <p class="footer-tagline">
-          An evolving practice in digital craft and creative experience.
+        <p class="footer-desc">
+          Archex brings together technology, creative thinking and go-to-market expertise to help ideas become meaningful products, experiences and businesses.
         </p>
+        <span class="footer-positioning">Independent thinking. Purposeful execution.</span>
       </div>
 
-      <!-- Right Column: Exact Destination URLs -->
-      <nav class="footer-nav" aria-label="Ecosystem destinations">
-        <div class="footer-nav-group">
-          <span class="footer-group-label">Destinations</span>
-          <ul class="footer-links">
+      <!-- Navigation Columns -->
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <!-- Practices Column -->
+        <div class="footer-col">
+          <span class="footer-col-label">Practices</span>
+          <ul class="footer-link-list">
             <li>
               <a
                 href="https://craft.archexweb.in/"
                 class="footer-link"
-                title="Go to Archex Craft — Digital Products & Engineering"
+                title="Archex Craft — Digital Products & Engineering"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <span>Archex Craft</span>
                 <span class="footer-arrow" aria-hidden="true">↗</span>
@@ -35,7 +39,9 @@ const currentYear = new Date().getFullYear();
               <a
                 href="https://studio.archexweb.in/"
                 class="footer-link"
-                title="Explore Archex Studio — Brand & Digital Experience"
+                title="Archex Studio — Brand & Digital Experience"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <span>Archex Studio</span>
                 <span class="footer-arrow" aria-hidden="true">↗</span>
@@ -43,12 +49,46 @@ const currentYear = new Date().getFullYear();
             </li>
             <li>
               <a
-                href="https://studio.archexweb.in/work/"
+                href="https://gtm.archexweb.in"
                 class="footer-link"
-                title="Explore selected projects in the Studio Work Archive"
+                title="Archex GTM — Go-to-Market Strategy & Execution"
               >
-                <span>Studio Work</span>
+                <span>Archex GTM</span>
                 <span class="footer-arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Ecosystem Column -->
+        <div class="footer-col">
+          <span class="footer-col-label">Ecosystem</span>
+          <ul class="footer-link-list">
+            <li>
+              <a href="/about" class="footer-link">
+                <span>About Archex</span>
+              </a>
+            </li>
+            <li>
+              <a href="/contact" class="footer-link">
+                <span>Contact Us</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Legal Column -->
+        <div class="footer-col">
+          <span class="footer-col-label">Legal</span>
+          <ul class="footer-link-list">
+            <li>
+              <a href="/privacy" class="footer-link">
+                <span>Privacy Policy</span>
+              </a>
+            </li>
+            <li>
+              <a href="/terms" class="footer-link">
+                <span>Terms of Service</span>
               </a>
             </li>
           </ul>
@@ -56,12 +96,15 @@ const currentYear = new Date().getFullYear();
       </nav>
     </div>
 
-    <!-- Bottom Line with Dynamic Year -->
+    <!-- Bottom Line with Dynamic Year & Verified Operator Reference -->
     <div class="footer-bottom">
       <p class="copyright-line">
-        © <span id="copyright-year">{currentYear}</span> Archex. All directions lead forward.
+        © <span id="copyright-year">{currentYear}</span> Archex. All rights reserved.
       </p>
-      <span class="footer-domain-note" aria-hidden="true">archexweb.in</span>
+      <div class="footer-bottom-meta">
+        <span class="footer-operator-note">archexweb.in</span>
+        <span class="footer-separator" aria-hidden="true">•</span>
+      </div>
     </div>
   </div>
 </footer>
@@ -76,7 +119,7 @@ const currentYear = new Date().getFullYear();
 
 <style>
   .site-footer {
-    padding-top: clamp(48px, 7vw, 76px);
+    padding-top: clamp(48px, 7vw, 80px);
     padding-bottom: clamp(32px, 5vw, 48px);
     background-color: var(--paper);
     border-top: 1px solid var(--line);
@@ -86,13 +129,13 @@ const currentYear = new Date().getFullYear();
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 40px;
+    gap: 48px;
     margin-bottom: clamp(40px, 6vw, 64px);
     flex-wrap: wrap;
   }
 
-  .footer-left {
-    max-width: 380px;
+  .footer-brand-col {
+    max-width: 400px;
   }
 
   .footer-wordmark {
@@ -109,24 +152,35 @@ const currentYear = new Date().getFullYear();
     color: var(--signal);
   }
 
-  .footer-tagline {
-    font-size: clamp(14px, 1.3vw, 15px);
-    line-height: 1.5;
+  .footer-desc {
+    font-size: 14.5px;
+    line-height: 1.55;
     color: var(--ink-graphite);
+    margin-bottom: 14px;
+  }
+
+  .footer-positioning {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--ink-muted);
+    display: block;
   }
 
   .footer-nav {
     display: flex;
-    gap: clamp(28px, 4vw, 48px);
+    gap: clamp(32px, 5vw, 64px);
+    flex-wrap: wrap;
   }
 
-  .footer-nav-group {
+  .footer-col {
     display: flex;
     flex-direction: column;
     gap: 14px;
+    min-width: 120px;
   }
 
-  .footer-group-label {
+  .footer-col-label {
     font-family: var(--mono);
     font-size: 11px;
     letter-spacing: 0.1em;
@@ -134,7 +188,7 @@ const currentYear = new Date().getFullYear();
     color: var(--ink-faint);
   }
 
-  .footer-links {
+  .footer-link-list {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -145,7 +199,7 @@ const currentYear = new Date().getFullYear();
 
   .footer-link {
     font-family: var(--sans);
-    font-size: clamp(14px, 1.2vw, 15px);
+    font-size: 14.5px;
     font-weight: 500;
     color: var(--ink-soft);
     display: inline-flex;
@@ -160,7 +214,7 @@ const currentYear = new Date().getFullYear();
 
   .footer-arrow {
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 11px;
     color: var(--ink-muted);
     transition: transform var(--transition-fast), color var(--transition-fast);
   }
@@ -187,18 +241,32 @@ const currentYear = new Date().getFullYear();
     color: var(--ink-muted);
   }
 
-  .footer-domain-note {
+  .footer-bottom-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-operator-note {
     font-family: var(--mono);
     font-size: 11px;
     letter-spacing: 0.05em;
     color: var(--ink-faint);
   }
 
-  @media (max-width: 640px) {
+  .footer-separator {
+    color: var(--line);
+    font-size: 11px;
+  }
+
+  @media (max-width: 768px) {
     .footer-main {
       flex-direction: column;
-      gap: 32px;
+      gap: 36px;
+    }
+    .footer-nav {
+      width: 100%;
+      justify-content: space-between;
     }
   }
 </style>
-

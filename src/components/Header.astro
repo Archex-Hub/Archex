@@ -1,43 +1,286 @@
 ---
-// Header.astro — Minimalist, refined gateway navigation
+// Header.astro — Navigation (Desktop & Accessible Mobile Drawer)
+interface Props {
+  activePath?: string;
+}
+
+const { activePath = '/' } = Astro.props;
 ---
 
 <header class="site-header" role="banner">
   <div class="shell header-inner">
+    <!-- Brand Wordmark -->
     <div class="header-brand">
-      <a href="#top" class="wordmark" aria-label="Archex — Back to top">
+      <a href="/" class="wordmark" aria-label="Archex — Home">
         archex<span class="wordmark-dot">.</span>
       </a>
-      <span class="header-badge" aria-hidden="true">Gateway</span>
     </div>
 
-    <nav class="header-nav" aria-label="Primary destinations">
+    <!-- Desktop Navigation -->
+    <nav class="header-nav desktop-only" aria-label="Main navigation">
       <ul class="nav-list">
         <li class="nav-item">
           <a
             href="https://craft.archexweb.in/"
-            class="nav-link nav-link--craft"
-            title="Go to Archex Craft — Digital Products & Engineering"
+            class="nav-link nav-link--external"
+            title="Archex Craft — Software Engineering & Digital Products"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <span class="nav-label">Craft</span>
+            <span class="nav-arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href="https://studio.archexweb.in/"
+            class="nav-link nav-link--external"
+            title="Archex Studio — Brand Identity & Digital Experience"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="nav-label">Studio</span>
+            <span class="nav-arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href="https://gtm.archexweb.in"
+            class="nav-link"
+            title="Archex GTM — Go-to-market Strategy & Execution"
+          >
+            <span class="nav-label">GTM</span>
             <span class="nav-arrow" aria-hidden="true">↗</span>
           </a>
         </li>
         <li class="nav-separator" aria-hidden="true">/</li>
         <li class="nav-item">
           <a
-            href="https://studio.archexweb.in/"
-            class="nav-link nav-link--studio"
-            title="Explore Archex Studio — Brand & Digital Experience"
+            href="/about"
+            class={`nav-link ${activePath === '/about' ? 'nav-link--active' : ''}`}
+            aria-current={activePath === '/about' ? 'page' : undefined}
           >
-            <span class="nav-label">Studio</span>
-            <span class="nav-arrow" aria-hidden="true">↗</span>
+            <span class="nav-label">About</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href="/contact"
+            class={`nav-link nav-link--contact ${activePath === '/contact' ? 'nav-link--active' : ''}`}
+            aria-current={activePath === '/contact' ? 'page' : undefined}
+          >
+            <span class="nav-label">Contact</span>
           </a>
         </li>
       </ul>
     </nav>
+
+    <!-- Mobile Hamburger Toggle Button -->
+    <button
+      type="button"
+      id="mobile-nav-toggle"
+      class="mobile-toggle mobile-only"
+      aria-expanded="false"
+      aria-controls="mobile-nav-drawer"
+      aria-label="Open navigation menu"
+    >
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
   </div>
 </header>
+
+<!-- Mobile Navigation Drawer Overlay -->
+<div
+  id="mobile-nav-drawer"
+  class="mobile-drawer"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Navigation menu"
+  hidden
+>
+  <div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop"></div>
+  <div class="mobile-drawer-content" id="mobile-drawer-content">
+    <div class="mobile-drawer-header">
+      <a href="/" class="wordmark" aria-label="Archex — Home">
+        archex<span class="wordmark-dot">.</span>
+      </a>
+      <button
+        type="button"
+        id="mobile-nav-close"
+        class="mobile-close-btn"
+        aria-label="Close navigation menu"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="mobile-nav-body" aria-label="Mobile navigation">
+      <div class="mobile-group-label">Practices</div>
+      <ul class="mobile-nav-list">
+        <li>
+          <a
+            href="https://craft.archexweb.in/"
+            class="mobile-nav-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="mobile-link-text">
+              <span class="mobile-link-title">Archex Craft</span>
+              <span class="mobile-link-desc">Software engineering & product development</span>
+            </div>
+            <span class="nav-arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://studio.archexweb.in/"
+            class="mobile-nav-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="mobile-link-text">
+              <span class="mobile-link-title">Archex Studio</span>
+              <span class="mobile-link-desc">Brand identity & digital experiences</span>
+            </div>
+            <span class="nav-arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://gtm.archexweb.in" class="mobile-nav-link">
+            <div class="mobile-link-text">
+              <span class="mobile-link-title">Archex GTM</span>
+              <span class="mobile-link-desc">Go-to-market strategy & execution</span>
+            </div>
+            <span class="nav-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="mobile-group-label" style="margin-top: 24px;">Company</div>
+      <ul class="mobile-nav-list">
+        <li>
+          <a
+            href="/about"
+            class={`mobile-nav-link ${activePath === '/about' ? 'mobile-nav-link--active' : ''}`}
+            aria-current={activePath === '/about' ? 'page' : undefined}
+          >
+            <span class="mobile-link-title">About Archex</span>
+            <span class="nav-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://craft.archexweb.in/contact"
+            class={`mobile-nav-link ${activePath === '/contact' ? 'mobile-nav-link--active' : ''}`}
+            aria-current={activePath === '/contact' ? 'page' : undefined}
+          >
+            <span class="mobile-link-title">Contact Us</span>
+            <span class="nav-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="mobile-drawer-cta">
+        <a href="https://craft.archexweb.in/contact" class="btn-base btn-primary mobile-cta-btn">
+          <span>Start a conversation</span>
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<script>
+  // Accessible Mobile Menu Controller with Focus Trapping & Esc Key Handling
+  function initMobileMenu() {
+    const toggleBtn = document.getElementById('mobile-nav-toggle') as HTMLButtonElement | null;
+    const closeBtn = document.getElementById('mobile-nav-close') as HTMLButtonElement | null;
+    const drawer = document.getElementById('mobile-nav-drawer') as HTMLElement | null;
+    const backdrop = document.getElementById('mobile-drawer-backdrop');
+
+    if (!toggleBtn || !drawer || !closeBtn) return;
+    const btn = toggleBtn;
+    const drw = drawer;
+    const cls = closeBtn;
+
+    function openMenu() {
+      drw.removeAttribute('hidden');
+      btn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      // Focus the close button for accessibility
+      setTimeout(() => cls.focus(), 50);
+    }
+
+    function closeMenu() {
+      drw.setAttribute('hidden', '');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      btn.focus();
+    }
+
+    btn.addEventListener('click', () => {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      if (isExpanded) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    cls.addEventListener('click', closeMenu);
+    backdrop?.addEventListener('click', closeMenu);
+
+    // Close on navigation link click
+    drw.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Keyboard handling: Escape to close and focus trap inside modal
+    document.addEventListener('keydown', (e) => {
+      if (drw.hasAttribute('hidden')) return;
+
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeMenu();
+        return;
+      }
+
+      if (e.key === 'Tab') {
+        const focusable = drw.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length === 0) return;
+
+        const firstElement = focusable[0];
+        const lastElement = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
+      }
+    });
+  }
+
+  // Initialize immediately and support Astro page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
+</script>
 
 <style>
   .site-header {
@@ -45,7 +288,7 @@
     top: 0;
     z-index: 100;
     width: 100%;
-    background-color: rgba(245, 242, 235, 0.88);
+    background-color: rgba(245, 242, 235, 0.92);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line);
@@ -105,7 +348,7 @@
   .nav-list {
     display: flex;
     align-items: center;
-    gap: clamp(10px, 1.8vw, 20px);
+    gap: clamp(8px, 1.6vw, 18px);
     list-style: none;
     margin: 0;
     padding: 0;
@@ -116,6 +359,7 @@
     font-family: var(--mono);
     font-size: 13px;
     user-select: none;
+    margin: 0 4px;
   }
 
   .nav-link {
@@ -123,13 +367,13 @@
     align-items: center;
     gap: 4px;
     font-family: var(--sans);
-    font-size: clamp(14px, 1.3vw, 15px);
+    font-size: 14.5px;
     font-weight: 500;
     color: var(--ink-soft);
     padding: 8px 10px;
     border-radius: 2px;
     position: relative;
-    transition: color var(--transition-fast), transform var(--transition-fast);
+    transition: color var(--transition-fast);
   }
 
   .nav-link::after {
@@ -137,7 +381,7 @@
     position: absolute;
     bottom: 4px;
     left: 10px;
-    right: 14px;
+    right: 10px;
     height: 1px;
     background-color: currentColor;
     transform: scaleX(0);
@@ -149,14 +393,23 @@
     color: var(--signal);
   }
 
-  .nav-link:hover::after {
+  .nav-link:hover::after,
+  .nav-link--active::after {
     transform: scaleX(1);
     transform-origin: left;
   }
 
+  .nav-link--active {
+    color: var(--signal);
+  }
+
+  .nav-link--contact {
+    font-weight: 600;
+  }
+
   .nav-arrow {
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 11px;
     color: var(--ink-muted);
     transition: transform var(--transition-fast), color var(--transition-fast);
   }
@@ -166,17 +419,216 @@
     color: var(--signal);
   }
 
-  /* Specific mobile adjustments */
-  @media (max-width: 480px) {
+  /* Mobile Toggle Button */
+  .mobile-only {
+    display: none;
+  }
+
+  .desktop-only {
+    display: flex;
+  }
+
+  .mobile-toggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    color: var(--ink);
+    cursor: pointer;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .mobile-toggle:hover {
+    background-color: var(--paper-surface);
+    border-color: var(--line-strong);
+  }
+
+  .hamburger-box {
+    width: 20px;
+    height: 14px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .hamburger-inner,
+  .hamburger-inner::before,
+  .hamburger-inner::after {
+    width: 20px;
+    height: 1.5px;
+    background-color: var(--ink);
+    position: absolute;
+    border-radius: 1px;
+    transition: transform 0.2s ease, top 0.2s ease;
+  }
+
+  .hamburger-inner {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .hamburger-inner::before {
+    content: '';
+    top: -6px;
+  }
+
+  .hamburger-inner::after {
+    content: '';
+    top: 6px;
+  }
+
+  /* Mobile Drawer Dialog */
+  .mobile-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+  }
+
+  .mobile-drawer[hidden] {
+    display: none;
+  }
+
+  .mobile-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(20, 20, 19, 0.45);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .mobile-drawer-content {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    height: 100%;
+    background-color: var(--paper);
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    box-shadow: -8px 0 32px rgba(20, 20, 19, 0.15);
+    overflow-y: auto;
+    z-index: 10;
+    animation: drawerSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes drawerSlide {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .mobile-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 24px;
+  }
+
+  .mobile-close-btn {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    color: var(--ink);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .mobile-close-btn:hover {
+    background-color: var(--paper-surface);
+  }
+
+  .mobile-group-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 12px;
+  }
+
+  .mobile-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-radius: 3px;
+    background-color: var(--paper-card);
+    border: 1px solid var(--line-soft);
+    transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  }
+
+  .mobile-nav-link:hover {
+    border-color: var(--line-strong);
+    background-color: #ffffff;
+  }
+
+  .mobile-nav-link--active {
+    border-color: var(--signal);
+    background-color: #ffffff;
+  }
+
+  .mobile-link-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .mobile-link-title {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .mobile-link-desc {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--ink-graphite);
+  }
+
+  .mobile-drawer-cta {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+
+  .mobile-cta-btn {
+    width: 100%;
+    padding: 14px 20px;
+  }
+
+  @media (max-width: 820px) {
+    .desktop-only {
+      display: none;
+    }
+    .mobile-only {
+      display: inline-flex;
+    }
     .header-badge {
       display: none;
     }
-    .nav-list {
-      gap: 6px;
-    }
-    .nav-link {
-      padding: 6px 6px;
-    }
   }
 </style>
-

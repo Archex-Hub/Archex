@@ -1,0 +1,181 @@
+---
+// AboutSection.astro — About Archex: Purpose, Philosophy & Accountability
+---
+
+<section class="section-wrapper about-section" id="about" aria-labelledby="about-title">
+  <div class="shell">
+    <div class="about-grid">
+      <!-- Left Column: Editorial Headline & Identity Statement -->
+      <div class="about-left">
+        <span class="tech-tag">About Archex</span>
+        <h2 id="about-title" class="about-heading">
+          Independent thinking.<br />
+          Purposeful execution<span class="hl-dot">.</span>
+        </h2>
+        <p class="about-statement">
+          Archex brings together technology, creative thinking and go-to-market expertise to help ideas become meaningful products, experiences and businesses.
+        </p>
+
+        <div class="about-cta-box">
+          <a href="/about" class="btn-base btn-secondary" title="Read in-depth about Archex">
+            <span>Read full about Archex</span>
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Four Core Pillars of Archex -->
+      <div class="about-right">
+        <div class="about-pillars">
+          <!-- Pillar 1 -->
+          <article class="pillar-card">
+            <div class="pillar-header">
+              <span class="pillar-index">01</span>
+              <h3 class="pillar-title">Why Archex exists</h3>
+            </div>
+            <p class="pillar-body">
+              Digital initiatives frequently falter when fractured across disconnected web developers, design shops and marketing consultants. Archex provides a unified ecosystem where software engineering, brand identity and commercial strategy inform each other from inception.
+            </p>
+          </article>
+
+          <!-- Pillar 2 -->
+          <article class="pillar-card">
+            <div class="pillar-header">
+              <span class="pillar-index">02</span>
+              <h3 class="pillar-title">The thinking behind three practices</h3>
+            </div>
+            <p class="pillar-body">
+              Instead of a sprawling, generalized agency, Archex operates through three dedicated disciplines: Craft (software engineering), Studio (brand identity & digital experiences), and GTM (go-to-market & growth). Each retains deep focus while collaborating seamlessly.
+            </p>
+          </article>
+
+          <!-- Pillar 3 -->
+          <article class="pillar-card">
+            <div class="pillar-header">
+              <span class="pillar-index">03</span>
+              <h3 class="pillar-title">Our approach to problem solving</h3>
+            </div>
+            <p class="pillar-body">
+              We apply first-principles enquiry over agency trends. We dissect core user needs, architectural realities, and market mechanics, ensuring every interface designed and line of code written serves a verified objective.
+            </p>
+          </article>
+
+          <!-- Pillar 4 -->
+          <article class="pillar-card">
+            <div class="pillar-header">
+              <span class="pillar-index">04</span>
+              <h3 class="pillar-title">Thoughtful execution and accountability</h3>
+            </div>
+            <p class="pillar-body">
+              Sound strategy is meaningless without disciplined delivery. We prioritize reliability, long-term maintainability, and measurable progress, taking direct ownership of the systems we build and the outcomes we shape.
+            </p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    background-color: var(--paper-soft);
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    gap: clamp(36px, 5vw, 64px);
+    align-items: flex-start;
+  }
+
+  .about-left {
+    position: sticky;
+    top: calc(var(--header-height) + 32px);
+  }
+
+  .about-heading {
+    font-family: var(--serif);
+    font-size: clamp(32px, 3.8vw, 48px);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-top: 16px;
+    margin-bottom: 20px;
+  }
+
+  .hl-dot {
+    color: var(--signal);
+  }
+
+  .about-statement {
+    font-size: clamp(16px, 1.4vw, 18.5px);
+    line-height: 1.6;
+    color: var(--ink-graphite);
+    margin-bottom: 32px;
+  }
+
+  .about-cta-box {
+    padding-top: 16px;
+  }
+
+  /* Pillars Stack */
+  .about-pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .pillar-card {
+    background-color: var(--paper-card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: clamp(22px, 2.5vw, 32px);
+    transition: border-color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .pillar-card:hover {
+    border-color: var(--line-strong);
+    transform: translateY(-2px);
+  }
+
+  .pillar-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+
+  .pillar-index {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--signal);
+    font-weight: 600;
+  }
+
+  .pillar-title {
+    font-family: var(--sans);
+    font-size: clamp(17px, 1.4vw, 20px);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .pillar-body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-graphite);
+  }
+
+  @media (max-width: 900px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+    .about-left {
+      position: static;
+    }
+  }
+</style>
+

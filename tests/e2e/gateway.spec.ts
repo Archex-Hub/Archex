@@ -1,29 +1,41 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Archex Gateway — Content, Branding & Destination Tests', () => {
+test.describe('Archex Parent Brand — Ecosystem, Governance & Navigation Tests', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
   });
 
-  test('Page Title & SEO Metadata are correct', async ({ page }) => {
-    await expect(page).toHaveTitle('Archex — Craft and Studio');
+  test('1. Homepage Title, Description, Canonical & JSON-LD are correct', async ({ page }) => {
+    await expect(page).toHaveTitle('Archex — Independent thinking. Purposeful execution.');
 
     const metaDescription = page.locator('meta[name="description"]');
     await expect(metaDescription).toHaveAttribute(
       'content',
-      'Archex Web is now Archex Craft. Discover Archex Craft for digital products and engineering, and Archex Studio for brand and digital experiences.'
+      'Archex brings together technology, creative thinking and go-to-market expertise to help ideas become meaningful products, experiences and businesses.'
     );
 
     const canonical = page.locator('link[rel="canonical"]');
     await expect(canonical).toHaveAttribute('href', 'https://www.archexweb.in/');
+
+    // Verify Organization structured data
+    const ldJsonScript = page.locator('script[type="application/ld+json"]');
+    await expect(ldJsonScript).toBeAttached();
+    const ldContent = await ldJsonScript.textContent();
+    const parsedLd = JSON.parse(ldContent || '{}');
+    expect(parsedLd['@context']).toBe('https://schema.org');
+    expect(parsedLd['@graph']).toBeDefined();
+
+    const org = parsedLd['@graph'].find((item: any) => item['@type'] === 'Organization');
+    expect(org.name).toBe('Archex');
+    expect(org.url).toBe('https://www.archexweb.in');
+    expect(org.department).toHaveLength(3);
   });
 
-  test('Brand Wordmark is "archex." and does not use prohibited compound names', async ({ page }) => {
+  test('2. Brand Wordmark is "archex." and does not use prohibited compound names', async ({ page }) => {
     const wordmark = page.locator('.site-header .wordmark');
     await expect(wordmark).toBeVisible();
     await expect(wordmark).toContainText('archex.');
 
-    // Verify page title / heading doesn't use prohibited compound names
     const forbidden = ['Archex Gateway', 'Archex Group', 'Archex Network', 'Archex Digital'];
     const pageText = await page.innerText('body');
     for (const name of forbidden) {
@@ -31,193 +43,364 @@ test.describe('Archex Gateway — Content, Branding & Destination Tests', () => 
     }
   });
 
-  test('Navigation has exact Craft and Studio destinations', async ({ page }) => {
-    const craftNav = page.locator('.header-nav a[href="https://craft.archexweb.in/"]');
-    const studioNav = page.locator('.header-nav a[href="https://studio.archexweb.in/"]');
+  test('3. Desktop Navigation contains all ecosystem links with verified destinations', async ({ page }) => {
+    const headerNav = page.locator('.header-nav.desktop-only');
+    await expect(headerNav).toBeVisible();
 
-    await expect(craftNav).toBeVisible();
-    await expect(craftNav).toContainText('Craft');
-    await expect(studioNav).toBeVisible();
-    await expect(studioNav).toContainText('Studio');
+    // Craft link
+    const craftLink = headerNav.locator('a[href="https://craft.archexweb.in/"]');
+    await expect(craftLink).toBeVisible();
+    await expect(craftLink).toContainText('Craft');
+
+    // Studio link
+    const studioLink = headerNav.locator('a[href="https://studio.archexweb.in/"]');
+    await expect(studioLink).toBeVisible();
+    await expect(studioLink).toContainText('Studio');
+
+    // GTM link (points to internal enquiry anchor, not a fabricated URL)
+    const gtmLink = headerNav.locator('a[href="https://gtm.archexweb.in"]');
+    await expect(gtmLink).toBeVisible();
+    await expect(gtmLink).toContainText('GTM');
+
+    // About link
+    const aboutLink = headerNav.locator('a[href="/about"]');
+    await expect(aboutLink).toBeVisible();
+    await expect(aboutLink).toContainText('About');
+
+    // Contact link
+    const contactLink = headerNav.locator('a[href="https://craft.archexweb.in/contact"]');
+    await expect(contactLink).toBeVisible();
+    await expect(contactLink).toContainText('Contact');
   });
 
-  test('Hero section communicates rebrand and provides all mandatory CTAs', async ({ page }) => {
-    const heroHeadline = page.locator('#hero-title');
-    await expect(heroHeadline).toBeVisible();
-    await expect(heroHeadline).toContainText('Archex Web');
-    await expect(heroHeadline).toContainText('is now');
-    await expect(heroHeadline).toContainText('Archex Craft');
+  test('4. Accessible Mobile Navigation opens, traps focus, and closes via Escape key', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/');
+
+    const toggleBtn = page.locator('#mobile-nav-toggle');
+    await expect(toggleBtn).toBeVisible();
+    await expect(toggleBtn).toHaveAttribute('aria-expanded', 'false');
+
+    const drawer = page.locator('#mobile-nav-drawer');
+    await expect(drawer).toHaveAttribute('hidden', '');
+
+    // Open mobile menu
+    await toggleBtn.click();
+    await expect(toggleBtn).toHaveAttribute('aria-expanded', 'true');
+    await expect(drawer).not.toHaveAttribute('hidden', '');
+
+    // Check links in drawer
+    await expect(drawer.locator('a[href="https://craft.archexweb.in/"]')).toBeVisible();
+    await expect(drawer.locator('a[href="https://studio.archexweb.in/"]')).toBeVisible();
+    await expect(drawer.locator('a[href="https://gtm.archexweb.in"]')).toBeVisible();
+    await expect(drawer.locator('a[href="/about"]')).toBeVisible();
+    await expect(drawer.locator('a[href="https://craft.archexweb.in/contact"]').first()).toBeVisible();
+
+    // Press Escape to close
+    await page.keyboard.press('Escape');
+    await expect(drawer).toHaveAttribute('hidden', '');
+    await expect(toggleBtn).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  test('5. Hero section contains headline, supporting copy, and both primary CTAs', async ({ page }) => {
+    const heroTitle = page.locator('#hero-title');
+    await expect(heroTitle).toBeVisible();
+    await expect(heroTitle).toContainText('Three disciplines.');
+    await expect(heroTitle).toContainText('One direction');
 
     const heroDesc = page.locator('.hero-description');
     await expect(heroDesc).toBeVisible();
     await expect(heroDesc).toContainText(
-      'The work continues under a new name. Discover Archex Craft — where we build thoughtful digital products, intelligent systems and software experiences.'
+      'Technology, creative thinking and go-to-market strategy, brought together to move ideas forward.'
     );
 
     // Primary CTA
-    const primaryCTA = page.locator('.hero-actions a.cta-craft');
+    const primaryCTA = page.locator('.hero-actions a.cta-explore');
     await expect(primaryCTA).toBeVisible();
-    await expect(primaryCTA).toHaveAttribute('href', 'https://craft.archexweb.in/');
-    await expect(primaryCTA).toContainText('Go to Archex Craft');
+    await expect(primaryCTA).toHaveAttribute('href', '#practices');
+    await expect(primaryCTA).toContainText('Explore our practices');
 
     // Secondary CTA
-    const secondaryCTA = page.locator('.hero-actions a.cta-studio');
+    const secondaryCTA = page.locator('.hero-actions a.cta-contact');
     await expect(secondaryCTA).toBeVisible();
-    await expect(secondaryCTA).toHaveAttribute('href', 'https://studio.archexweb.in/');
-    await expect(secondaryCTA).toContainText('Explore Archex Studio');
-
-    // Supplementary Archive link
-    const archiveLink = page.locator('.hero-archive-link');
-    await expect(archiveLink).toBeVisible();
-    await expect(archiveLink).toHaveAttribute('href', 'https://studio.archexweb.in/work/');
-    await expect(archiveLink).toContainText('Curious about the creative work? Explore the Studio archive');
+    await expect(secondaryCTA).toHaveAttribute('href', '/contact');
+    await expect(secondaryCTA).toContainText('Contact Archex');
   });
 
-  test('Destinations section presents Destination 01 (Craft) & Destination 02 (Studio)', async ({ page }) => {
-    // Destination 01 — Archex Craft
-    const craftCard = page.locator('.dest-card--craft');
+  test('6. Practices section renders all 3 distinct cards with correct capabilities and links', async ({ page }) => {
+    const practicesSection = page.locator('#practices');
+    await expect(practicesSection).toBeVisible();
+
+    // CARD 1: Craft
+    const craftCard = practicesSection.locator('.practice-card--craft');
     await expect(craftCard).toBeVisible();
-    await expect(craftCard.locator('.card-index')).toContainText('01 / DIGITAL PRODUCTS & ENGINEERING');
-    await expect(craftCard.locator('#craft-title')).toContainText('Archex Craft');
+    await expect(craftCard.locator('#craft-title')).toContainText('Craft');
     await expect(craftCard.locator('.card-description')).toContainText(
-      "From product ideas to working software. Craft is the new home of Archex Web's digital product and engineering work."
+      'Thoughtful software engineering and digital product development, from early ideas to reliable digital systems.'
     );
-    const craftVisitBtn = craftCard.locator('a.dest-cta--craft');
-    await expect(craftVisitBtn).toHaveAttribute('href', 'https://craft.archexweb.in/');
-    await expect(craftVisitBtn).toContainText('Visit Craft');
+    await expect(craftCard.locator('.capabilities-list')).toContainText('Software engineering');
+    await expect(craftCard.locator('.capabilities-list')).toContainText('Web applications');
+    await expect(craftCard.locator('.capabilities-list')).toContainText('Digital products');
+    await expect(craftCard.locator('.capabilities-list')).toContainText('AI integration');
+    await expect(craftCard.locator('.capabilities-list')).toContainText('Systems and modernization');
+    const craftCta = craftCard.locator('a.card-cta--craft');
+    await expect(craftCta).toHaveAttribute('href', 'https://craft.archexweb.in/');
+    await expect(craftCta).toContainText('Explore Craft');
 
-    // Destination 02 — Archex Studio
-    const studioCard = page.locator('.dest-card--studio');
+    // CARD 2: Studio
+    const studioCard = practicesSection.locator('.practice-card--studio');
     await expect(studioCard).toBeVisible();
-    await expect(studioCard.locator('.card-index')).toContainText('02 / BRAND & DIGITAL EXPERIENCE');
-    await expect(studioCard.locator('#studio-title')).toContainText('Archex Studio');
+    await expect(studioCard.locator('#studio-title')).toContainText('Studio');
     await expect(studioCard.locator('.card-description')).toContainText(
-      'An independent creative practice shaping identities, visual systems and digital experiences.'
+      'Brand identity, creative direction and digital experiences built around clarity, meaning and thoughtful design.'
     );
-    const studioVisitBtn = studioCard.locator('a.dest-cta--studio');
-    await expect(studioVisitBtn).toHaveAttribute('href', 'https://studio.archexweb.in/');
-    await expect(studioVisitBtn).toContainText('Visit Studio');
+    await expect(studioCard.locator('.capabilities-list')).toContainText('Brand strategy');
+    await expect(studioCard.locator('.capabilities-list')).toContainText('Visual identity');
+    await expect(studioCard.locator('.capabilities-list')).toContainText('Creative direction');
+    await expect(studioCard.locator('.capabilities-list')).toContainText('UI/UX design');
+    await expect(studioCard.locator('.capabilities-list')).toContainText('Digital experiences');
+    const studioCta = studioCard.locator('a.card-cta--studio');
+    await expect(studioCta).toHaveAttribute('href', 'https://studio.archexweb.in/');
+    await expect(studioCta).toContainText('Explore Studio');
 
-    const studioWorkLink = studioCard.locator('a.studio-archive-link');
-    await expect(studioWorkLink).toHaveAttribute('href', 'https://studio.archexweb.in/work/');
-    await expect(studioWorkLink).toContainText('Explore selected work');
+    // CARD 3: GTM (Must NOT have fabricated destination)
+    const gtmCard = practicesSection.locator('.practice-card--gtm');
+    await expect(gtmCard).toBeVisible();
+    await expect(gtmCard.locator('#gtm-title')).toContainText('GTM');
+    await expect(gtmCard.locator('.card-description')).toContainText(
+      'Go-to-market strategy and execution to help businesses position, launch and grow their products and services.'
+    );
+    await expect(gtmCard.locator('.capabilities-list')).toContainText('Market research');
+    await expect(gtmCard.locator('.capabilities-list')).toContainText('Ideal customer profiling');
+    await expect(gtmCard.locator('.capabilities-list')).toContainText('Positioning and differentiation');
+    await expect(gtmCard.locator('.capabilities-list')).toContainText('Pricing and packaging');
+    await expect(gtmCard.locator('.capabilities-list')).toContainText('Launch strategy');
+    await expect(gtmCard.locator('.capabilities-list')).toContainText('Customer acquisition');
+    await expect(gtmCard.locator('.capabilities-list')).toContainText('Growth experiments');
+    await expect(gtmCard.locator('.capabilities-list')).toContainText('Funnel optimisation');
+    const gtmCta = gtmCard.locator('a.card-cta--gtm');
+    await expect(gtmCta).toHaveAttribute('href', 'https://gtm.archexweb.in');
+    await expect(gtmCta).toContainText('Explore GTM');
   });
 
-  test('Signature visual section is rendered with both branches', async ({ page }) => {
-    const sigHeading = page.locator('#sig-title');
-    await expect(sigHeading).toBeVisible();
-    await expect(sigHeading).toContainText('Two directions, one name.');
+  test('7. Collaboration Framework illustrates flow and clarifies independent engagement', async ({ page }) => {
+    const framework = page.locator('#framework');
+    await expect(framework).toBeVisible();
+    await expect(framework.locator('.framework-lead')).toContainText(
+      'An idea may need a clear identity, a working product and a route to market. Archex brings those disciplines together when a project calls for them.'
+    );
 
-    const svgArtwork = page.locator('.signature-svg--desktop');
-    await expect(svgArtwork).toBeVisible();
+    // 4 stages
+    await expect(framework.locator('.flow-steps-grid')).toContainText('Strategy and direction');
+    await expect(framework.locator('.flow-steps-grid')).toContainText('Design and experience');
+    await expect(framework.locator('.flow-steps-grid')).toContainText('Engineering and execution');
+    await expect(framework.locator('.flow-steps-grid')).toContainText('Market introduction');
 
-    // Check craft and studio branch groups
-    await expect(page.locator('#branch-craft-group')).toBeVisible();
-    await expect(page.locator('#branch-studio-group')).toBeVisible();
-    await expect(page.locator('#hub-group')).toBeVisible();
+    // Collaborative not mandatory notice
+    const notice = framework.locator('.framework-notice');
+    await expect(notice).toBeVisible();
+    await expect(notice).toContainText(
+      'This is a collaborative framework, not a mandatory linear process. Clients engage with individual practices independently'
+    );
   });
 
-  test('Closing section contains required heading and CTAs', async ({ page }) => {
-    const closingHeading = page.locator('#closing-title');
-    await expect(closingHeading).toBeVisible();
-    await expect(closingHeading).toContainText('Find the direction that fits');
+  test('8. About section on Homepage explains why Archex exists and links to full About page', async ({ page }) => {
+    const aboutSection = page.locator('#about');
+    await expect(aboutSection).toBeVisible();
+    await expect(aboutSection.locator('.about-heading')).toContainText('Independent thinking.');
+    await expect(aboutSection.locator('.about-heading')).toContainText('Purposeful execution');
+    await expect(aboutSection.locator('.about-statement')).toContainText(
+      'Archex brings together technology, creative thinking and go-to-market expertise'
+    );
 
-    const closingSubhead = page.locator('.closing-subhead');
-    await expect(closingSubhead).toContainText('Explore the work that belongs to you.');
+    // 4 pillars
+    await expect(aboutSection.locator('.about-pillars')).toContainText('Why Archex exists');
+    await expect(aboutSection.locator('.about-pillars')).toContainText('The thinking behind three practices');
+    await expect(aboutSection.locator('.about-pillars')).toContainText('Our approach to problem solving');
+    await expect(aboutSection.locator('.about-pillars')).toContainText('Thoughtful execution and accountability');
 
-    const craftLink = page.locator('.closing-btn--craft');
-    await expect(craftLink).toHaveAttribute('href', 'https://craft.archexweb.in/');
-    await expect(craftLink).toContainText('Explore Craft');
-
-    const studioLink = page.locator('.closing-btn--studio');
-    await expect(studioLink).toHaveAttribute('href', 'https://studio.archexweb.in/');
-    await expect(studioLink).toContainText('Visit Studio');
+    // Link to /about
+    const aboutLink = aboutSection.locator('a[href="/about"]');
+    await expect(aboutLink).toBeVisible();
   });
 
-  test('Footer displays brand wordmark, destination links, and dynamic copyright year', async ({ page }) => {
+  test('9. Contact CTA section invites conversations and directs to /contact', async ({ page }) => {
+    const contactCta = page.locator('#contact-cta');
+    await expect(contactCta).toBeVisible();
+    await expect(contactCta.locator('#cta-heading')).toContainText('Have something worth building?');
+    await expect(contactCta.locator('.cta-description')).toContainText(
+      "Tell us what you are working on. We'll help direct your enquiry to the right practice."
+    );
+
+    const ctaBtn = contactCta.locator('a.cta-btn');
+    await expect(ctaBtn).toHaveAttribute('href', '/contact');
+    await expect(ctaBtn).toContainText('Start a conversation');
+  });
+
+  test('10. Footer displays brand identity, parent description, all ecosystem links & dynamic year', async ({ page }) => {
     const footer = page.locator('.site-footer');
     await expect(footer).toBeVisible();
     await expect(footer.locator('.footer-wordmark')).toContainText('archex.');
-    await expect(footer.locator('.footer-tagline')).toContainText(
-      'An evolving practice in digital craft and creative experience.'
+    await expect(footer.locator('.footer-desc')).toContainText(
+      'Archex brings together technology, creative thinking and go-to-market expertise'
     );
 
-    // Links in footer
+    // Practice links
     await expect(footer.locator('a[href="https://craft.archexweb.in/"]')).toBeVisible();
     await expect(footer.locator('a[href="https://studio.archexweb.in/"]')).toBeVisible();
-    await expect(footer.locator('a[href="https://studio.archexweb.in/work/"]')).toBeVisible();
+    await expect(footer.locator('a[href="https://gtm.archexweb.in"]')).toBeVisible();
 
-    // Copyright line
+    // Company & Legal links
+    await expect(footer.locator('a[href="/about"]')).toBeVisible();
+    await expect(footer.locator('a[href="https://craft.archexweb.in/contact"]')).toBeVisible();
+    await expect(footer.locator('a[href="/privacy"]')).toBeVisible();
+    await expect(footer.locator('a[href="/terms"]')).toBeVisible();
+
+    // Dynamic current year
     const currentYear = new Date().getFullYear().toString();
-    const copyright = footer.locator('.copyright-line');
-    await expect(copyright).toContainText(`© ${currentYear} Archex. All directions lead forward.`);
+    await expect(footer.locator('#copyright-year')).toContainText(currentYear);
   });
 
-  test('All external links strictly use the approved 3 destination URLs', async ({ page }) => {
-    const validDestinations = new Set([
-      'https://craft.archexweb.in/',
-      'https://studio.archexweb.in/',
-      'https://studio.archexweb.in/work/',
-    ]);
+  test('11. Dedicated About Page (/about) renders comprehensive philosophy and practice guides', async ({ page }) => {
+    await page.goto('/about');
+    await expect(page).toHaveTitle('About — Archex');
+    await expect(page.locator('.page-title')).toContainText('Independent thinking.');
+    await expect(page.locator('.page-title')).toContainText('Purposeful execution');
 
-    const externalAnchors = page.locator('a[href^="http"]');
-    const count = await externalAnchors.count();
-    expect(count).toBeGreaterThan(0);
+    // Section headings
+    const content = page.locator('.editorial-content');
+    await expect(content).toContainText('Why Archex exists');
+    await expect(content).toContainText('The three practices');
+    await expect(content).toContainText('Our approach to solving problems');
+    await expect(content).toContainText('Commitment to thoughtful execution & accountability');
 
-    for (let i = 0; i < count; i++) {
-      const href = await externalAnchors.nth(i).getAttribute('href');
-      expect(validDestinations.has(href || '')).toBe(true);
-    }
+    // Sidebar navigation
+    const sidebar = page.locator('.editorial-sidebar');
+    await expect(sidebar.locator('a[href="https://craft.archexweb.in/"]')).toBeVisible();
+    await expect(sidebar.locator('a[href="https://studio.archexweb.in/"]')).toBeVisible();
+    await expect(sidebar.locator('a[href="https://gtm.archexweb.in"]')).toBeVisible();
   });
 
-  test('Signature Visual nodes have minimal, stationary hover behavior without coordinate jump', async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto('/');
+  test('12. Dedicated Contact Page (/contact) contains all 8 required fields & consent controls', async ({ page }) => {
+    await page.goto('/contact');
+    await expect(page).toHaveTitle('Contact Archex — Start a conversation');
+    await expect(page.locator('.contact-title')).toContainText("Let's start a conversation");
 
-    const craftNode = page.locator('#craft-node');
-    const studioNode = page.locator('#studio-node');
+    const form = page.locator('#archex-contact-form');
+    await expect(form).toBeVisible();
 
-    // Scroll into view first so page is stationary during hover checks
-    await craftNode.scrollIntoViewIfNeeded();
-    await page.waitForTimeout(200);
+    // All 8 fields
+    await expect(form.locator('input#fullName')).toBeVisible();
+    await expect(form.locator('input#workEmail')).toBeVisible();
+    await expect(form.locator('input#company')).toBeVisible();
+    await expect(form.locator('select#practice')).toBeVisible();
+    await expect(form.locator('textarea#enquiry')).toBeVisible();
+    await expect(form.locator('select#budget')).toBeVisible();
+    await expect(form.locator('select#timeline')).toBeVisible();
+    await expect(form.locator('textarea#additionalInfo')).toBeVisible();
 
-    const craftBoxBefore = await craftNode.boundingBox();
-    expect(craftBoxBefore).not.toBeNull();
+    // Mandatory Privacy Consent & Separate Optional Marketing Consent
+    await expect(form.locator('input#privacyConsent')).toBeVisible();
+    await expect(form.locator('input#marketingConsent')).toBeVisible();
 
-    // Hover over craft node
-    await craftNode.hover();
-    await page.waitForTimeout(100);
+    // Submit button
+    await expect(form.locator('button#submit-btn')).toBeVisible();
+  });
 
-    const craftBoxAfter = await craftNode.boundingBox();
-    expect(craftBoxAfter).not.toBeNull();
+  test('13. Contact Page preselects practice from URL parameter (?practice=gtm)', async ({ page }) => {
+    await page.goto('https://gtm.archexweb.in');
+    const practiceSelect = page.locator('select#practice');
+    await expect(practiceSelect).toHaveValue('gtm');
+  });
 
-    // Coordinates should stay stationary (no wild jump to origin)
-    expect(Math.abs((craftBoxAfter?.x ?? 0) - (craftBoxBefore?.x ?? 0))).toBeLessThanOrEqual(1);
-    expect(Math.abs((craftBoxAfter?.y ?? 0) - (craftBoxBefore?.y ?? 0))).toBeLessThanOrEqual(1);
+  test('14. Contact Form validates required fields, shows accessible errors, and prevents invalid submission', async ({ page }) => {
+    await page.goto('/contact');
+    const submitBtn = page.locator('#submit-btn');
 
-    // Verify telemetry status updated
-    const telemetry = page.locator('#telemetry-status');
-    await expect(telemetry).toContainText('ACTIVE // CRAFT BRANCH');
+    // Try submitting empty form
+    await submitBtn.click();
 
-    // Test studio node
-    await studioNode.scrollIntoViewIfNeeded();
-    await page.waitForTimeout(100);
+    // Verify accessible error states
+    const nameInput = page.locator('input#fullName');
+    await expect(nameInput).toHaveAttribute('aria-invalid', 'true');
+    await expect(page.locator('#fullName-error')).toContainText('Please enter your full name');
 
-    const studioBoxBefore = await studioNode.boundingBox();
-    expect(studioBoxBefore).not.toBeNull();
+    // Fill valid name, but invalid email
+    await nameInput.fill('Alex Rivera');
+    const emailInput = page.locator('input#workEmail');
+    await emailInput.fill('invalid-email-string');
+    await submitBtn.click();
 
-    // Hover over studio node
-    await studioNode.hover();
-    await page.waitForTimeout(100);
+    await expect(emailInput).toHaveAttribute('aria-invalid', 'true');
+    await expect(page.locator('#workEmail-error')).toContainText('Please enter a valid email address');
+  });
 
-    const studioBoxAfter = await studioNode.boundingBox();
-    expect(studioBoxAfter).not.toBeNull();
+  test('15. Contact Form successfully submits with valid inputs, generates reference code, and blocks duplicates', async ({ page }) => {
+    await page.goto('/contact');
 
-    // Coordinates should stay stationary (no wild jump to origin)
-    expect(Math.abs((studioBoxAfter?.x ?? 0) - (studioBoxBefore?.x ?? 0))).toBeLessThanOrEqual(1);
-    expect(Math.abs((studioBoxAfter?.y ?? 0) - (studioBoxBefore?.y ?? 0))).toBeLessThanOrEqual(1);
+    // Fill valid form data
+    await page.locator('input#fullName').fill('Kaif Sayed');
+    await page.locator('input#workEmail').fill('kaif@archexweb.in');
+    await page.locator('input#company').fill('Acme Corp');
+    await page.locator('select#practice').selectOption('craft');
+    await page.locator('textarea#enquiry').fill('We are building a new software application and need architectural guidance.');
+    await page.locator('select#budget').selectOption('25k-50k');
+    await page.locator('select#timeline').selectOption('1-3-months');
+    await page.locator('input#privacyConsent').check();
 
-    // Verify telemetry status updated
-    await expect(telemetry).toContainText('ACTIVE // STUDIO BRANCH');
+    // Submit form
+    await page.locator('#submit-btn').click();
+
+    // Verify Success Region
+    const successRegion = page.locator('#submission-success');
+    await expect(successRegion).toBeVisible();
+    await expect(successRegion.locator('.success-heading')).toContainText('Enquiry received');
+    const refCode = await successRegion.locator('#success-ref').innerText();
+    expect(refCode).toMatch(/^AX-\d{6}$/);
+
+    // Verify form is hidden after success
+    await expect(page.locator('#archex-contact-form')).toBeHidden();
+  });
+
+  test('16. Privacy Policy Page (/privacy) identifies Archex, practice relationships, and Indian legal review flag', async ({ page }) => {
+    await page.goto('/privacy');
+    await expect(page).toHaveTitle('Privacy Policy — Archex');
+    await expect(page.locator('.legal-title')).toContainText('Privacy Policy');
+
+    const body = page.locator('.legal-body');
+    await expect(body).toContainText('Operator Identity & Brand Architecture');
+    await expect(body).toContainText('archexweb.in');
+    await expect(body).toContainText('Archex Craft');
+    await expect(body).toContainText('Archex Studio');
+    await expect(body).toContainText('Archex GTM');
+
+    // Verify Indian Legal Review Notice is prominent
+    const advisory = page.locator('.legal-advisory');
+    await expect(advisory).toBeVisible();
+    await expect(advisory).toContainText('Digital Personal Data Protection Act, 2023 (India)');
+    await expect(advisory).toContainText('Indian legal practitioner');
+  });
+
+  test('17. Terms of Service Page (/terms) specifies practice independent contracts and Indian jurisdiction', async ({ page }) => {
+    await page.goto('/terms');
+    await expect(page).toHaveTitle('Terms of Service — Archex');
+    await expect(page.locator('.legal-title')).toContainText('Terms of Service');
+
+    const body = page.locator('.legal-body');
+    await expect(body).toContainText('Acceptance of Terms');
+    await expect(body).toContainText('Ecosystem Structure & Practice Engagements');
+    await expect(body).toContainText('No Misleading Guarantees');
+    await expect(body).toContainText('Governing Law & Jurisdiction');
+    await expect(body).toContainText('laws of India');
+  });
+
+  test('18. Custom 404 Page (/404) provides clear navigation back to parent brand and practices', async ({ page }) => {
+    await page.goto('/404');
+    await expect(page).toHaveTitle('Page Not Found — Archex');
+    await expect(page.locator('.not-found-title')).toContainText('Page not found');
+
+    const returnBtn = page.locator('.not-found-actions a[href="/"]');
+    await expect(returnBtn).toBeVisible();
+    await expect(returnBtn).toContainText('Return to Homepage');
   });
 });

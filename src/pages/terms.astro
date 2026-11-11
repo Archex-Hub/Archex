@@ -1,0 +1,241 @@
+---
+// terms.astro — Archex Ecosystem Terms of Service
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Terms of Service — Archex"
+  description="Terms governing the use of the Archex parent brand gateway (archexweb.in) and practice relationships."
+  canonical="https://www.archexweb.in/terms/"
+  activePath="/terms"
+>
+  <div class="shell legal-container">
+    <div class="legal-header">
+      <span class="tech-tag">Legal & Operating Terms</span>
+      <h1 class="legal-title">Terms of Service<span class="hl-dot">.</span></h1>
+      <p class="legal-meta">
+        <span>Effective Date: November 2026</span>
+        <span class="meta-sep">•</span>
+        <span>Applies to: archexweb.in</span>
+      </p>
+    </div>
+
+    <!-- Indian Legal Review Advisory Callout -->
+    <div class="legal-advisory" role="note">
+      <div class="advisory-icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+      </div>
+      <div class="advisory-text">
+        <strong>Legal Notice & Regulatory Context:</strong>
+        These Terms of Service govern the use of the Archex parent gateway. Commercial agreements, statements of work, and formal deliverables for individual practices are subject to specific contracts and review under the laws of India.
+      </div>
+    </div>
+
+    <div class="legal-body">
+      <section class="legal-section">
+        <h2>1. Acceptance of Terms</h2>
+        <p>
+          By accessing or using the website at <strong>archexweb.in</strong> (the "Website"), you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>2. Ecosystem Structure & Practice Engagements</h2>
+        <p>
+          Archex functions as the parent brand and gateway for three distinct disciplines:
+        </p>
+        <ul>
+          <li><strong>Archex Craft:</strong> Software engineering and digital products (craft.archexweb.in).</li>
+          <li><strong>Archex Studio:</strong> Brand identity, creative direction, and digital experiences (studio.archexweb.in).</li>
+          <li><strong>Archex GTM:</strong> Go-to-market strategy, positioning, and growth execution.</li>
+        </ul>
+        <p>
+          This Website serves an informational and routing purpose. Any commercial relationship, technical deliverable, design engagement, or advisory service is executed strictly through dedicated project proposals, statements of work, or service agreements entered into with the appropriate practice entity.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>3. Intellectual Property Rights</h2>
+        <p>
+          The content, layout, design, graphics, wordmarks, code, and documentation on archexweb.in are the exclusive property of Archex, protected under Indian and international copyright and trademark laws.
+        </p>
+        <p>
+          You may view, print, or download informational materials from this Website solely for personal, non-commercial evaluation of our practices. You must not republish, reproduce, duplicate, or exploit any material from this Website without prior written permission.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>4. Permissible Use & Enquiries</h2>
+        <p>
+          When using our Contact form or submitting information to Archex, you agree to:
+        </p>
+        <ul>
+          <li>Provide accurate, genuine, and current business information.</li>
+          <li>Refrain from transmitting unsolicited marketing promotions (spam), malicious code, or unauthorized automated submissions.</li>
+          <li>Not probe, scan, or test the vulnerability of the Website or attempt to bypass security measures.</li>
+        </ul>
+      </section>
+
+      <section class="legal-section">
+        <h2>5. No Misleading Guarantees & Disclaimer of Warranties</h2>
+        <p>
+          The materials on this Website are provided on an "as is" and "as available" basis. Archex makes no warranties, expressed or implied, regarding commercial outcomes, revenue projections, search engine rankings, or uninterrupted availability.
+        </p>
+        <p>
+          We do not make exaggerated claims, provide fabricated credentials, or guarantee uniform results across client projects. Every engagement is evaluated on its specific technical, creative, and commercial merits.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>6. Limitation of Liability</h2>
+        <p>
+          In no event shall Archex or its practice leads be liable for any indirect, incidental, or consequential damages (including loss of data, profit, or business interruption) arising out of the use or inability to use this Website, even if advised of the possibility of such damage.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>7. Governing Law & Jurisdiction</h2>
+        <p>
+          These Terms shall be governed by and construed in accordance with the laws of India, without regard to conflict of law principles. Any legal disputes arising out of the use of this Website shall be subject to the exclusive jurisdiction of the competent courts in India.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>8. Contact</h2>
+        <p>
+          If you have questions regarding these Terms, please contact us through our dedicated <a href="https://craft.archexweb.in/contact">Contact Page</a>.
+        </p>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .legal-container {
+    padding-top: clamp(40px, 6vw, 72px);
+    padding-bottom: clamp(60px, 9vw, 110px);
+    max-width: 860px;
+  }
+
+  .legal-header {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .legal-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 400;
+    color: var(--ink);
+    margin-top: 14px;
+    margin-bottom: 12px;
+  }
+
+  .hl-dot {
+    color: var(--signal);
+  }
+
+  .legal-meta {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .meta-sep {
+    color: var(--line);
+  }
+
+  /* Advisory Callout */
+  .legal-advisory {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+    background-color: #ffffff;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--signal);
+    border-radius: 3px;
+    margin-bottom: 40px;
+  }
+
+  .advisory-icon {
+    color: var(--signal);
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .advisory-text {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .legal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .legal-section {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .legal-section h2 {
+    font-family: var(--sans);
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .legal-section p {
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+
+  .legal-section ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .legal-section li {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .legal-section li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--signal);
+    font-family: var(--mono);
+  }
+
+  .legal-section a {
+    color: var(--signal);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>
+

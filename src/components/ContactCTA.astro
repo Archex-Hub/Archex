@@ -1,0 +1,182 @@
+---
+// ContactCTA.astro — Homepage Closing Contact CTA
+---
+
+<section class="section-wrapper cta-section" id="contact-cta" aria-labelledby="cta-heading">
+  <div class="shell">
+    <div class="cta-card">
+      <div class="cta-meta">
+        <span class="cta-microcopy">“Every meaningful collaboration begins with a direct conversation.”</span>
+      </div>
+
+      <h2 id="cta-heading" class="cta-headline">
+        Have something worth building<span class="hl-dot">?</span>
+      </h2>
+
+      <p class="cta-description">
+        Tell us what you are working on. We'll help direct your enquiry to the right practice.
+      </p>
+
+      <div class="cta-actions">
+        <a
+          href="https://craft.archexweb.in/contact"
+          class="btn-base btn-primary cta-btn"
+          title="Direct your enquiry to Archex"
+        >
+          <span>Start a conversation</span>
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="cta-practice-links">
+        <span class="practice-links-label">Direct practice pathways:</span>
+        <div class="practice-links-group">
+          <a href="https://craft.archexweb.in/" class="practice-pill" target="_blank" rel="noopener noreferrer">
+            Craft ↗
+          </a>
+          <a href="https://studio.archexweb.in/" class="practice-pill" target="_blank" rel="noopener noreferrer">
+            Studio ↗
+          </a>
+          <a href="https://gtm.archexweb.in/" class="practice-pill" target="_blank" rel="noopener noreferrer">
+            GTM ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    padding-top: clamp(50px, 7vw, 90px);
+    padding-bottom: clamp(60px, 8vw, 110px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .cta-card {
+    background-color: var(--paper-soft);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: clamp(36px, 6vw, 72px) clamp(24px, 5vw, 64px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--signal), transparent);
+  }
+
+  .cta-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .cta-microcopy {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-graphite);
+  }
+
+  .cta-headline {
+    font-family: var(--serif);
+    font-size: clamp(34px, 4.8vw, 64px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 16px;
+    max-width: 760px;
+  }
+
+  .hl-dot {
+    color: var(--signal);
+  }
+
+  .cta-description {
+    font-size: clamp(17px, 1.6vw, 21px);
+    color: var(--ink-graphite);
+    margin-bottom: clamp(32px, 4.5vw, 44px);
+    max-width: 580px;
+    line-height: 1.5;
+  }
+
+  .cta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    width: 100%;
+  }
+
+  .cta-btn {
+    padding: 16px 36px;
+    font-size: 16px;
+  }
+
+  .cta-practice-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--ink-faint);
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 20px;
+    border-top: 1px dashed var(--line);
+  }
+
+  .practice-links-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .practice-links-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .practice-pill {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-soft);
+    padding: 4px 10px;
+    background-color: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+  }
+
+  .practice-pill:hover {
+    border-color: var(--signal);
+    color: var(--signal);
+  }
+
+  @media (max-width: 540px) {
+    .cta-actions {
+      flex-direction: column;
+    }
+    .cta-btn {
+      width: 100%;
+    }
+  }
+</style>
+

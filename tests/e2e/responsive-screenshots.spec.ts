@@ -13,7 +13,7 @@ const viewports = [
   { name: '1920px-desktop-wide', width: 1920, height: 1080 },
 ];
 
-test.describe('Responsive Viewport Verification & Screenshot Capture', () => {
+test.describe('Responsive Viewport Audits & Visual Screenshot Captures', () => {
   const screenshotsDir = path.resolve('artifacts', 'screenshots');
 
   test.beforeAll(async () => {
@@ -23,7 +23,7 @@ test.describe('Responsive Viewport Verification & Screenshot Capture', () => {
   });
 
   for (const vp of viewports) {
-    test(`Responsive verification and screenshot at ${vp.width}px (${vp.name})`, async ({ page }) => {
+    test(`Responsive verification and screenshot of Homepage at ${vp.width}px (${vp.name})`, async ({ page }) => {
       await page.setViewportSize({ width: vp.width, height: vp.height });
       await page.goto('/', { waitUntil: 'networkidle' });
 
@@ -37,16 +37,52 @@ test.describe('Responsive Viewport Verification & Screenshot Capture', () => {
       const wordmark = page.locator('.site-header .wordmark');
       await expect(wordmark).toBeVisible();
 
-      // Verify Primary CTA is visible and interactable
-      const primaryCTA = page.locator('.hero-actions a.cta-craft');
+      // Verify Hero primary CTA is visible and clickable
+      const primaryCTA = page.locator('.hero-actions a.cta-explore');
       await expect(primaryCTA).toBeVisible();
 
-      // Take full page screenshot
-      const screenshotPath = path.join(screenshotsDir, `archex-${vp.name}.png`);
+      // Capture full page screenshot
+      const screenshotPath = path.join(screenshotsDir, `archex-home-${vp.name}.png`);
       await page.screenshot({ path: screenshotPath, fullPage: true });
-
       expect(fs.existsSync(screenshotPath)).toBe(true);
     });
   }
-});
 
+  // Captures for Dedicated Contact Page
+  test('Capture Contact Page at Desktop (1440px)', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/contact', { waitUntil: 'networkidle' });
+
+    const form = page.locator('#archex-contact-form');
+    await expect(form).toBeVisible();
+
+    const screenshotPath = path.join(screenshotsDir, 'archex-contact-desktop-1440px.png');
+    await page.screenshot({ path: screenshotPath, fullPage: true });
+    expect(fs.existsSync(screenshotPath)).toBe(true);
+  });
+
+  test('Capture Contact Page at Mobile (390px)', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/contact', { waitUntil: 'networkidle' });
+
+    const form = page.locator('#archex-contact-form');
+    await expect(form).toBeVisible();
+
+    const screenshotPath = path.join(screenshotsDir, 'archex-contact-mobile-390px.png');
+    await page.screenshot({ path: screenshotPath, fullPage: true });
+    expect(fs.existsSync(screenshotPath)).toBe(true);
+  });
+
+  // Captures for Dedicated About Page
+  test('Capture About Page at Desktop (1440px)', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/about', { waitUntil: 'networkidle' });
+
+    const title = page.locator('.page-title');
+    await expect(title).toBeVisible();
+
+    const screenshotPath = path.join(screenshotsDir, 'archex-about-desktop-1440px.png');
+    await page.screenshot({ path: screenshotPath, fullPage: true });
+    expect(fs.existsSync(screenshotPath)).toBe(true);
+  });
+});

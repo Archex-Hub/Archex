@@ -1,20 +1,22 @@
 ---
-// index.astro — Archex Gateway Homepage
+// index.astro — Archex Parent Brand Homepage
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import Destinations from '../components/Destinations.astro';
-import SignatureVisual from '../components/SignatureVisual.astro';
-import Closing from '../components/Closing.astro';
+import Practices from '../components/Practices.astro';
+import CollaborationFramework from '../components/CollaborationFramework.astro';
+import AboutSection from '../components/AboutSection.astro';
+import ContactCTA from '../components/ContactCTA.astro';
 ---
 
 <BaseLayout
-  title="Archex — Craft and Studio"
-  description="Archex Web is now Archex Craft. Discover Archex Craft for digital products and engineering, and Archex Studio for brand and digital experiences."
+  title="Archex — Independent thinking. Purposeful execution."
+  description="Archex brings together technology, creative thinking and go-to-market expertise to help ideas become meaningful products, experiences and businesses."
   canonical="https://www.archexweb.in/"
+  activePath="/"
 >
   <Hero />
-  <Destinations />
-  <SignatureVisual />
-  <Closing />
+  <Practices />
+  <CollaborationFramework />
+  <AboutSection />
+  <ContactCTA />
 </BaseLayout>
-
