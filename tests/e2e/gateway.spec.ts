@@ -68,7 +68,7 @@ test.describe('Archex Parent Brand — Ecosystem, Governance & Navigation Tests'
     await expect(aboutLink).toContainText('About');
 
     // Contact link
-    const contactLink = headerNav.locator('a[href="https://craft.archexweb.in/contact"]');
+    const contactLink = headerNav.locator('a[href="/contact"]');
     await expect(contactLink).toBeVisible();
     await expect(contactLink).toContainText('Contact');
   });
@@ -94,7 +94,7 @@ test.describe('Archex Parent Brand — Ecosystem, Governance & Navigation Tests'
     await expect(drawer.locator('a[href="https://studio.archexweb.in/"]')).toBeVisible();
     await expect(drawer.locator('a[href="https://gtm.archexweb.in"]')).toBeVisible();
     await expect(drawer.locator('a[href="/about"]')).toBeVisible();
-    await expect(drawer.locator('a[href="https://craft.archexweb.in/contact"]').first()).toBeVisible();
+    await expect(drawer.locator('a[href="/contact"]').first()).toBeVisible();
 
     // Press Escape to close
     await page.keyboard.press('Escape');
@@ -123,7 +123,7 @@ test.describe('Archex Parent Brand — Ecosystem, Governance & Navigation Tests'
     // Secondary CTA
     const secondaryCTA = page.locator('.hero-actions a.cta-contact');
     await expect(secondaryCTA).toBeVisible();
-    await expect(secondaryCTA).toHaveAttribute('href', '/contact');
+    await expect(secondaryCTA).toHaveAttribute('href', 'https://craft.archexweb.in/contact');
     await expect(secondaryCTA).toContainText('Contact Archex');
   });
 
@@ -233,7 +233,7 @@ test.describe('Archex Parent Brand — Ecosystem, Governance & Navigation Tests'
     );
 
     const ctaBtn = contactCta.locator('a.cta-btn');
-    await expect(ctaBtn).toHaveAttribute('href', '/contact');
+    await expect(ctaBtn).toHaveAttribute('href', 'https://craft.archexweb.in/contact');
     await expect(ctaBtn).toContainText('Start a conversation');
   });
 
@@ -252,7 +252,7 @@ test.describe('Archex Parent Brand — Ecosystem, Governance & Navigation Tests'
 
     // Company & Legal links
     await expect(footer.locator('a[href="/about"]')).toBeVisible();
-    await expect(footer.locator('a[href="https://craft.archexweb.in/contact"]')).toBeVisible();
+    await expect(footer.locator('a[href="/contact"]')).toBeVisible();
     await expect(footer.locator('a[href="/privacy"]')).toBeVisible();
     await expect(footer.locator('a[href="/terms"]')).toBeVisible();
 
@@ -281,85 +281,116 @@ test.describe('Archex Parent Brand — Ecosystem, Governance & Navigation Tests'
     await expect(sidebar.locator('a[href="https://gtm.archexweb.in"]')).toBeVisible();
   });
 
-  test('12. Dedicated Contact Page (/contact) contains all 8 required fields & consent controls', async ({ page }) => {
+  test('12. Dedicated Contact Page (/contact) transforms into Founder Introduction with verified identity', async ({ page }) => {
     await page.goto('/contact');
-    await expect(page).toHaveTitle('Contact Archex — Start a conversation');
-    await expect(page.locator('.contact-title')).toContainText("Let's start a conversation");
+    await expect(page).toHaveTitle('About the Founder | Archex');
 
-    const form = page.locator('#archex-contact-form');
-    await expect(form).toBeVisible();
+    const metaDescription = page.locator('meta[name="description"]');
+    await expect(metaDescription).toHaveAttribute(
+      'content',
+      'Get to know the thinking and philosophy behind Archex and the three practices: Craft, Studio and GTM.'
+    );
 
-    // All 8 fields
-    await expect(form.locator('input#fullName')).toBeVisible();
-    await expect(form.locator('input#workEmail')).toBeVisible();
-    await expect(form.locator('input#company')).toBeVisible();
-    await expect(form.locator('select#practice')).toBeVisible();
-    await expect(form.locator('textarea#enquiry')).toBeVisible();
-    await expect(form.locator('select#budget')).toBeVisible();
-    await expect(form.locator('select#timeline')).toBeVisible();
-    await expect(form.locator('textarea#additionalInfo')).toBeVisible();
+    // Verify Eyebrow & Hero Heading
+    const eyebrow = page.locator('.hero-tag-row .tech-tag');
 
-    // Mandatory Privacy Consent & Separate Optional Marketing Consent
-    await expect(form.locator('input#privacyConsent')).toBeVisible();
-    await expect(form.locator('input#marketingConsent')).toBeVisible();
+    const heroTitle = page.locator('.founder-hero-title');
+    await expect(heroTitle).toBeVisible();
+    await expect(heroTitle).toContainText('Every direction has a');
+    await expect(heroTitle).toContainText('starting point');
 
-    // Submit button
-    await expect(form.locator('button#submit-btn')).toBeVisible();
+    // Verify Founder Card & Metadata
+    const founderCard = page.locator('.founder-card');
+    await expect(founderCard).toBeVisible();
+    await expect(founderCard.locator('.founder-name')).toContainText('Kaif');
+    await expect(founderCard.locator('.founder-role')).toContainText('Founder & Principal');
+    await expect(founderCard.locator('.founder-org')).toContainText('Archex');
+
+    // Verify First-Person Narrative Essay is rendered
+    const narrative = page.locator('.founder-narrative');
+    await expect(narrative).toBeVisible();
+    await expect(narrative).toContainText('Archex began with an interest in bringing thoughtful ideas into the real world');
+
+    // Verify absolutely NO form elements remain
+    const formCount = await page.locator('form').count();
+    expect(formCount).toBe(0);
+    await expect(page.locator('input#fullName')).toHaveCount(0);
+    await expect(page.locator('input#workEmail')).toHaveCount(0);
+    await expect(page.locator('select#practice')).toHaveCount(0);
   });
 
-  test('13. Contact Page preselects practice from URL parameter (?practice=gtm)', async ({ page }) => {
-    await page.goto('https://gtm.archexweb.in');
-    const practiceSelect = page.locator('select#practice');
-    await expect(practiceSelect).toHaveValue('gtm');
-  });
-
-  test('14. Contact Form validates required fields, shows accessible errors, and prevents invalid submission', async ({ page }) => {
-    await page.goto('/contact');
-    const submitBtn = page.locator('#submit-btn');
-
-    // Try submitting empty form
-    await submitBtn.click();
-
-    // Verify accessible error states
-    const nameInput = page.locator('input#fullName');
-    await expect(nameInput).toHaveAttribute('aria-invalid', 'true');
-    await expect(page.locator('#fullName-error')).toContainText('Please enter your full name');
-
-    // Fill valid name, but invalid email
-    await nameInput.fill('Alex Rivera');
-    const emailInput = page.locator('input#workEmail');
-    await emailInput.fill('invalid-email-string');
-    await submitBtn.click();
-
-    await expect(emailInput).toHaveAttribute('aria-invalid', 'true');
-    await expect(page.locator('#workEmail-error')).toContainText('Please enter a valid email address');
-  });
-
-  test('15. Contact Form successfully submits with valid inputs, generates reference code, and blocks duplicates', async ({ page }) => {
+  test('13. Personal Philosophy section ("How I think about the work.") renders 3 core tenets', async ({ page }) => {
     await page.goto('/contact');
 
-    // Fill valid form data
-    await page.locator('input#fullName').fill('Kaif Sayed');
-    await page.locator('input#workEmail').fill('kaif@archexweb.in');
-    await page.locator('input#company').fill('Acme Corp');
-    await page.locator('select#practice').selectOption('craft');
-    await page.locator('textarea#enquiry').fill('We are building a new software application and need architectural guidance.');
-    await page.locator('select#budget').selectOption('25k-50k');
-    await page.locator('select#timeline').selectOption('1-3-months');
-    await page.locator('input#privacyConsent').check();
+    const philosophySection = page.locator('#philosophy');
+    await expect(philosophySection).toBeVisible();
+    await expect(philosophySection.locator('#philosophy-title')).toContainText('How I think about the work.');
 
-    // Submit form
-    await page.locator('#submit-btn').click();
+    const cards = philosophySection.locator('.philosophy-card');
+    await expect(cards).toHaveCount(3);
 
-    // Verify Success Region
-    const successRegion = page.locator('#submission-success');
-    await expect(successRegion).toBeVisible();
-    await expect(successRegion.locator('.success-heading')).toContainText('Enquiry received');
-    const refCode = await successRegion.locator('#success-ref').innerText();
-    expect(refCode).toMatch(/^AX-\d{6}$/);
+    // 01 Build with intention
+    await expect(cards.nth(0)).toContainText('01');
+    await expect(cards.nth(0)).toContainText('Build with intention.');
+    await expect(cards.nth(0)).toContainText('Technology should solve a meaningful problem, not simply exist for its own sake.');
 
-    // Verify form is hidden after success
-    await expect(page.locator('#archex-contact-form')).toBeHidden();
+    // 02 Design with clarity
+    await expect(cards.nth(1)).toContainText('02');
+    await expect(cards.nth(1)).toContainText('Design with clarity.');
+    await expect(cards.nth(1)).toContainText('Good creative work should have meaning, direction and purpose.');
+
+    // 03 Move with understanding
+    await expect(cards.nth(2)).toContainText('03');
+    await expect(cards.nth(2)).toContainText('Move with understanding.');
+    await expect(cards.nth(2)).toContainText('Taking something to market requires more than an idea. It requires positioning, decisions and disciplined execution.');
+  });
+
+  test('14. The Three Archex Practices bridge section connects founder vision to Craft, Studio, and GTM', async ({ page }) => {
+    await page.goto('/contact');
+
+    const practicesSection = page.locator('#practices');
+    await expect(practicesSection).toBeVisible();
+    await expect(practicesSection.locator('#practices-bridge-title')).toContainText('Translating vision into practice.');
+
+    const bridgeCards = practicesSection.locator('.practice-bridge-card');
+    await expect(bridgeCards).toHaveCount(3);
+
+    await expect(bridgeCards.nth(0)).toContainText('Archex Craft');
+    await expect(bridgeCards.nth(0)).toContainText('craft.archexweb.in');
+
+    await expect(bridgeCards.nth(1)).toContainText('Archex Studio');
+    await expect(bridgeCards.nth(1)).toContainText('studio.archexweb.in');
+
+    await expect(bridgeCards.nth(2)).toContainText('Archex GTM');
+    await expect(bridgeCards.nth(2)).toContainText('gtm.archexweb.in');
+  });
+
+  test('15. Central Contact Destination section routes strictly to craft.archexweb.in/contact in same tab', async ({ page }) => {
+    await page.goto('/contact');
+
+    const contactDesk = page.locator('#contact-desk');
+    await expect(contactDesk).toBeVisible();
+
+    // Required Heading & Copy
+    await expect(contactDesk.locator('#contact-desk-heading')).toContainText('Have something in mind?');
+    await expect(contactDesk.locator('.destination-copy')).toContainText(
+      'For projects, collaborations, questions or anything you’d like to discuss, reach out through our central contact desk.'
+    );
+
+    // Explanatory line
+    await expect(contactDesk.locator('.destination-explainer')).toContainText(
+      'All enquiries are handled centrally through Archex Craft.'
+    );
+
+    // Primary CTA Button
+    const ctaBtn = contactDesk.locator('a.contact-destination-btn');
+    await expect(ctaBtn).toBeVisible();
+    await expect(ctaBtn).toContainText('Get in touch');
+    await expect(ctaBtn).toHaveAttribute('href', 'https://craft.archexweb.in/contact');
+
+    // Must open in the same tab (no target="_blank")
+    const targetAttr = await ctaBtn.getAttribute('target');
+    expect(targetAttr).toBeNull();
   });
 
   test('16. Privacy Policy Page (/privacy) identifies Archex, practice relationships, and Indian legal review flag', async ({ page }) => {

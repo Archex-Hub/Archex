@@ -48,13 +48,15 @@ test.describe('Responsive Viewport Audits & Visual Screenshot Captures', () => {
     });
   }
 
-  // Captures for Dedicated Contact Page
+  // Captures for Dedicated Contact Page (Founder Introduction & Gateway)
   test('Capture Contact Page at Desktop (1440px)', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/contact', { waitUntil: 'networkidle' });
 
-    const form = page.locator('#archex-contact-form');
-    await expect(form).toBeVisible();
+    const heroTitle = page.locator('.founder-hero-title');
+    await expect(heroTitle).toBeVisible();
+    const destinationBtn = page.locator('a.contact-destination-btn');
+    await expect(destinationBtn).toBeVisible();
 
     const screenshotPath = path.join(screenshotsDir, 'archex-contact-desktop-1440px.png');
     await page.screenshot({ path: screenshotPath, fullPage: true });
@@ -65,8 +67,10 @@ test.describe('Responsive Viewport Audits & Visual Screenshot Captures', () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/contact', { waitUntil: 'networkidle' });
 
-    const form = page.locator('#archex-contact-form');
-    await expect(form).toBeVisible();
+    const heroTitle = page.locator('.founder-hero-title');
+    await expect(heroTitle).toBeVisible();
+    const destinationBtn = page.locator('a.contact-destination-btn');
+    await expect(destinationBtn).toBeVisible();
 
     const screenshotPath = path.join(screenshotsDir, 'archex-contact-mobile-390px.png');
     await page.screenshot({ path: screenshotPath, fullPage: true });
