@@ -291,9 +291,7 @@ test.describe('Archex Parent Brand — Ecosystem, Governance & Navigation Tests'
       'Get to know the thinking and philosophy behind Archex and the three practices: Craft, Studio and GTM.'
     );
 
-    // Verify Eyebrow & Hero Heading
-    const eyebrow = page.locator('.hero-tag-row .tech-tag');
-
+    // Verify Hero Heading
     const heroTitle = page.locator('.founder-hero-title');
     await expect(heroTitle).toBeVisible();
     await expect(heroTitle).toContainText('Every direction has a');
