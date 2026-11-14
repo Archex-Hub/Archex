@@ -1,0 +1,302 @@
+---
+// EcosystemDock.astro — Floating Persistent Ecosystem Navigator
+// Gives visitors instant 1-click access to Craft, Studio, GTM & Contact once scrolled past hero
+---
+
+<aside class="ecosystem-dock" id="ecosystem-dock" aria-label="Quick Ecosystem Practice Navigation">
+  <div class="dock-shell">
+    <!-- Brand Mark -->
+    <a href="#top" class="dock-brand" title="Back to top">
+      <span class="dock-brand-name">archex</span><span class="dock-dot">.</span>
+    </a>
+
+    <div class="dock-divider" aria-hidden="true"></div>
+
+    <!-- Practice Switcher Links -->
+    <nav class="dock-nav" aria-label="Ecosystem practices quick links">
+      <ul class="dock-list">
+        <li class="dock-item">
+          <a
+            href="https://craft.archexweb.in/"
+            class="dock-link dock-link--craft"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Archex Craft — Software Engineering & Digital Products"
+          >
+            <span class="dock-indicator dock-indicator--craft" aria-hidden="true"></span>
+            <span class="dock-link-name">Craft</span>
+            <span class="dock-arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+
+        <li class="dock-item">
+          <a
+            href="https://studio.archexweb.in/"
+            class="dock-link dock-link--studio"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Archex Studio — Brand Identity & Digital Experience"
+          >
+            <span class="dock-indicator dock-indicator--studio" aria-hidden="true"></span>
+            <span class="dock-link-name">Studio</span>
+            <span class="dock-arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+
+        <li class="dock-item">
+          <a
+            href="https://gtm.archexweb.in"
+            class="dock-link dock-link--gtm"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Archex GTM — Go-to-market Strategy & Execution"
+          >
+            <span class="dock-indicator dock-indicator--gtm" aria-hidden="true"></span>
+            <span class="dock-link-name">GTM</span>
+            <span class="dock-arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="dock-divider" aria-hidden="true"></div>
+
+    <!-- Contact Quick Action -->
+    <a
+      href="https://craft.archexweb.in/contact"
+      class="dock-contact-btn"
+      title="Contact Archex via central desk"
+    >
+      <span>Contact</span>
+      <span class="dock-arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
+</aside>
+
+<script>
+  function initDockScroll() {
+    const dock = document.getElementById('ecosystem-dock');
+    if (!dock) return;
+
+    let ticking = false;
+
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // Reveal dock once scrolled past top hero (~260px)
+          if (window.scrollY > 260) {
+            dock.classList.add('is-visible');
+          } else {
+            dock.classList.remove('is-visible');
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDockScroll);
+  } else {
+    initDockScroll();
+  }
+</script>
+
+<style>
+  .ecosystem-dock {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(24px);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 990;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+    max-width: calc(100vw - 32px);
+  }
+
+  .ecosystem-dock.is-visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .dock-shell {
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 1.5vw, 14px);
+    background: rgba(20, 20, 19, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 9999px;
+    padding: 6px 12px 6px 16px;
+    color: #ffffff;
+  }
+
+  .dock-brand {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--serif);
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+    padding-right: 4px;
+  }
+
+  .dock-brand-name {
+    font-weight: 400;
+  }
+
+  .dock-dot {
+    color: var(--signal-bright, #bc4733);
+  }
+
+  .dock-divider {
+    width: 1px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  .dock-nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .dock-list {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .dock-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 9999px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.82);
+    transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+    position: relative;
+  }
+
+  .dock-link:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .dock-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+  }
+
+  .dock-indicator--craft {
+    background: #f59e0b; /* Amber / Copper glow */
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.7);
+  }
+
+  .dock-indicator--studio {
+    background: #e07a5f; /* Terracotta / Vermilion */
+    box-shadow: 0 0 8px rgba(224, 122, 95, 0.7);
+  }
+
+  .dock-indicator--gtm {
+    background: #38bdf8; /* Sky / Telemetry cyan */
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.7);
+  }
+
+  .dock-link:hover .dock-indicator {
+    transform: scale(1.3);
+  }
+
+  .dock-arrow {
+    font-size: 10px;
+    opacity: 0.6;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .dock-link:hover .dock-arrow {
+    opacity: 1;
+    transform: translate(1px, -1px);
+  }
+
+  .dock-contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--signal, #9c3e2f);
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 9999px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+  }
+
+  .dock-contact-btn:hover {
+    background: var(--signal-bright, #bc4733);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(156, 62, 47, 0.4);
+  }
+
+  .dock-contact-btn .dock-arrow {
+    opacity: 1;
+  }
+
+  .dock-contact-btn:hover .dock-arrow {
+    transform: translateX(2px);
+  }
+
+  /* Responsive compact states */
+  @media (max-width: 640px) {
+    .ecosystem-dock {
+      bottom: 16px;
+    }
+
+    .dock-shell {
+      padding: 5px 8px 5px 12px;
+      gap: 6px;
+    }
+
+    .dock-brand-name {
+      font-size: 14px;
+    }
+
+    .dock-link {
+      padding: 5px 7px;
+      font-size: 11px;
+      gap: 4px;
+    }
+
+    .dock-contact-btn {
+      padding: 5px 10px;
+      font-size: 10px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ecosystem-dock {
+      transition: none;
+    }
+    .dock-link, .dock-contact-btn, .dock-arrow, .dock-indicator {
+      transition: none;
+    }
+  }
+</style>

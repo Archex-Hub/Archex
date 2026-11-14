@@ -17,5 +17,8 @@ export default defineConfig({
     url: 'http://127.0.0.1:4325',
     reuseExistingServer: false,
     timeout: 30_000,
+    env: {
+      NAPI_RS_FORCE_WASI: 'true',
+    },
   },
 });

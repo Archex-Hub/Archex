@@ -397,7 +397,7 @@ test.describe('Archex Parent Brand — Ecosystem, Governance & Navigation Tests'
     await expect(page.locator('.legal-title')).toContainText('Privacy Policy');
 
     const body = page.locator('.legal-body');
-    await expect(body).toContainText('Operator Identity & Brand Architecture');
+    await expect(body).toContainText('Operator Identity, Brand Architecture & Business Structure');
     await expect(body).toContainText('archexweb.in');
     await expect(body).toContainText('Archex Craft');
     await expect(body).toContainText('Archex Studio');
@@ -417,7 +417,7 @@ test.describe('Archex Parent Brand — Ecosystem, Governance & Navigation Tests'
 
     const body = page.locator('.legal-body');
     await expect(body).toContainText('Acceptance of Terms');
-    await expect(body).toContainText('Ecosystem Structure & Practice Engagements');
+    await expect(body).toContainText('Ecosystem Structure & Nature of Engagements');
     await expect(body).toContainText('No Misleading Guarantees');
     await expect(body).toContainText('Governing Law & Jurisdiction');
     await expect(body).toContainText('laws of India');
@@ -431,5 +431,25 @@ test.describe('Archex Parent Brand — Ecosystem, Governance & Navigation Tests'
     const returnBtn = page.locator('.not-found-actions a[href="/"]');
     await expect(returnBtn).toBeVisible();
     await expect(returnBtn).toContainText('Return to Homepage');
+  });
+
+  test('19. Technical SEO: robots.txt and sitemap.xml are served and valid', async ({ page }) => {
+    // 1. Verify robots.txt
+    const robotsRes = await page.goto('/robots.txt');
+    expect(robotsRes?.status()).toBe(200);
+    const robotsText = await robotsRes?.text();
+    expect(robotsText).toContain('User-agent: *');
+    expect(robotsText).toContain('Allow: /');
+    expect(robotsText).toContain('Sitemap: https://www.archexweb.in/sitemap.xml');
+
+    // 2. Verify sitemap.xml
+    const sitemapRes = await page.goto('/sitemap.xml');
+    expect(sitemapRes?.status()).toBe(200);
+    const sitemapText = await sitemapRes?.text();
+    expect(sitemapText).toContain('https://www.archexweb.in/');
+    expect(sitemapText).toContain('https://www.archexweb.in/about/');
+    expect(sitemapText).toContain('https://www.archexweb.in/contact/');
+    expect(sitemapText).toContain('https://www.archexweb.in/privacy/');
+    expect(sitemapText).toContain('https://www.archexweb.in/terms/');
   });
 });

@@ -1,90 +1,410 @@
 ---
 // Hero.astro — Hero: Three disciplines. One direction.
+// Editorial Narrative & Interactive Ecosystem Lens (Clear, Value-Driven Copy)
 ---
 
 <section class="section-wrapper section-wrapper--hero hero" id="top" aria-labelledby="hero-title">
+  <!-- Subtle Architectural Grid Background -->
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+
   <div class="shell">
-    <div class="hero-content">
-      <!-- Ecosystem Status & Positioning Badge -->
-      <div class="hero-meta-row">
-        <span class="hero-positioning-tag" aria-hidden="true">
-          Independent thinking. Purposeful execution.
-        </span>
+    <div class="hero-layout">
+      <!-- ── Left Column: Value-Focused Narrative & Actions ────────────── -->
+      <div class="hero-content">
+        <!-- Ecosystem Status & Positioning Badge -->
+        <div class="hero-meta-row">
+          <span class="hero-positioning-tag" aria-hidden="true">
+            Independent thinking. Purposeful execution.
+          </span>
+          <span class="hero-ecosystem-status">
+            <span class="status-ping" aria-hidden="true"></span>
+            <span class="status-text">Three Integrated Practices</span>
+          </span>
+        </div>
+
+        <!-- Main Editorial Headline -->
+        <h1 id="hero-title" class="hero-headline">
+          Three disciplines.<br />
+          <span class="hl-accent">One direction<span class="hl-dot">.</span></span>
+        </h1>
+
+        <!-- Supporting Editorial Copy -->
+        <p class="hero-description">
+          Technology, creative thinking and go-to-market strategy, brought together to move ideas forward.
+        </p>
+
+        <!-- Simple, Relatable Value Note for Indian Founders/Businesses -->
+        <div class="hero-narrative-note">
+          <p>
+            Design, software, and market launch — all handled together. No headaches of managing multiple agencies or explaining your vision three times.
+          </p>
+        </div>
+
+        <!-- Action Button Cluster -->
+        <div class="hero-actions">
+          <a
+            href="#practices"
+            class="btn-base btn-primary cta-explore"
+            title="Explore our three practices"
+          >
+            <span>Explore our practices</span>
+            <span class="btn-arrow" aria-hidden="true">↓</span>
+          </a>
+
+          <a
+            href="https://craft.archexweb.in/contact"
+            class="btn-base btn-secondary cta-contact"
+            title="Contact Archex"
+          >
+            <span>Contact Archex</span>
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
 
-      <!-- Main Editorial Headline -->
-      <h1 id="hero-title" class="hero-headline">
-        Three disciplines.<br />
-        <span class="hl-accent">One direction<span class="hl-dot">.</span></span>
-      </h1>
+      <!-- ── Right Column: Interactive Ecosystem Lens ─────────────────── -->
+      <div class="hero-lens-container" aria-label="Interactive practice specimen lens">
+        <div class="lens-console">
+          <!-- Console Top Chrome -->
+          <div class="lens-chrome">
+            <div class="lens-dots" aria-hidden="true">
+              <span class="dot dot--red"></span>
+              <span class="dot dot--amber"></span>
+              <span class="dot dot--green"></span>
+            </div>
+            <div class="lens-tabs" role="tablist" aria-label="Practice specimen switcher">
+              <button
+                type="button"
+                class="lens-tab is-active"
+                role="tab"
+                id="tab-craft"
+                aria-selected="true"
+                aria-controls="panel-craft"
+                data-target="panel-craft"
+              >
+                <span class="tab-dot tab-dot--craft" aria-hidden="true"></span>
+                <span>01 Craft (Build)</span>
+              </button>
+              <button
+                type="button"
+                class="lens-tab"
+                role="tab"
+                id="tab-studio"
+                aria-selected="false"
+                aria-controls="panel-studio"
+                data-target="panel-studio"
+              >
+                <span class="tab-dot tab-dot--studio" aria-hidden="true"></span>
+                <span>02 Studio (Design)</span>
+              </button>
+              <button
+                type="button"
+                class="lens-tab"
+                role="tab"
+                id="tab-gtm"
+                aria-selected="false"
+                aria-controls="panel-gtm"
+                data-target="panel-gtm"
+              >
+                <span class="tab-dot tab-dot--gtm" aria-hidden="true"></span>
+                <span>03 GTM (Grow)</span>
+              </button>
+            </div>
+          </div>
 
-      <!-- Supporting Editorial Copy -->
-      <p class="hero-description">
-        Technology, creative thinking and go-to-market strategy, brought together to move ideas forward.
-      </p>
+          <!-- Console Screen / Panels -->
+          <div class="lens-screens">
+            <!-- PANEL 1: ARCHEX CRAFT (Build) -->
+            <div
+              class="lens-panel lens-panel--craft is-active"
+              role="tabpanel"
+              id="panel-craft"
+              aria-labelledby="tab-craft"
+            >
+              <div class="panel-header">
+                <div class="panel-eyebrow">
+                  <span class="panel-badge">WEBSITES & SOFTWARE</span>
+                  <span class="panel-status">craft.archexweb.in</span>
+                </div>
+                <h2 class="panel-title">Fast websites and custom software that actually work.</h2>
+              </div>
 
-      <!-- Action Button Cluster -->
-      <div class="hero-actions">
-        <a
-          href="#practices"
-          class="btn-base btn-primary cta-explore"
-          title="Explore our three practices"
-        >
-          <span>Explore our practices</span>
-          <span class="btn-arrow" aria-hidden="true">↓</span>
-        </a>
+              <!-- Value-Focused Specimen Preview -->
+              <div class="panel-specimen specimen-craft" aria-label="Craft Engineering Value">
+                <div class="craft-blueprint">
+                  <div class="blueprint-layer">
+                    <span class="layer-code">01 / SPEED</span>
+                    <span class="layer-title">Loads instantly on any phone or laptop</span>
+                    <span class="layer-pill">Fast</span>
+                  </div>
+                  <div class="blueprint-layer">
+                    <span class="layer-code">02 / STABILITY</span>
+                    <span class="layer-title">Clean code that stays reliable as you scale</span>
+                    <span class="layer-pill">No Bugs</span>
+                  </div>
+                  <div class="blueprint-layer">
+                    <span class="layer-code">03 / AI & TOOLS</span>
+                    <span class="layer-title">Smart workflows that save hours of manual work</span>
+                    <span class="layer-pill">Automated</span>
+                  </div>
+                </div>
+              </div>
 
-        <a
-          href="https://craft.archexweb.in/contact"
-          class="btn-base btn-secondary cta-contact"
-          title="Contact Archex"
-        >
-          <span>Contact Archex</span>
-          <span class="btn-arrow" aria-hidden="true">→</span>
+              <div class="panel-footer">
+                <p class="panel-lead">
+                  We build web apps, customer portals, and internal tools so you can run your business with complete confidence.
+                </p>
+                <a
+                  href="https://craft.archexweb.in/"
+                  class="panel-cta panel-cta--craft"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>Explore Archex Craft</span>
+                  <span class="cta-arrow" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- PANEL 2: ARCHEX STUDIO (Design) -->
+            <div
+              class="lens-panel lens-panel--studio"
+              role="tabpanel"
+              id="panel-studio"
+              aria-labelledby="tab-studio"
+              hidden
+            >
+              <div class="panel-header">
+                <div class="panel-eyebrow">
+                  <span class="panel-badge panel-badge--studio">BRAND & DESIGN</span>
+                  <span class="panel-status">studio.archexweb.in</span>
+                </div>
+                <h2 class="panel-title">Make your business look premium, trustworthy, and modern.</h2>
+              </div>
+
+              <!-- Value-Focused Design Preview -->
+              <div class="panel-specimen specimen-studio" aria-label="Studio Design Value">
+                <div class="studio-specimen-box">
+                  <div class="studio-specimen-top">
+                    <span>WHAT YOUR CUSTOMERS SEE</span>
+                    <span>PREMIUM LOOK</span>
+                  </div>
+                  <div class="studio-specimen-hero">
+                    <span class="specimen-headline">clean.<br />credible.</span>
+                    <div class="specimen-curve" aria-hidden="true">
+                      <svg viewBox="0 0 160 60" fill="none">
+                        <path d="M 5 50 C 40 45, 70 10, 155 15" stroke="var(--signal)" stroke-width="2" />
+                        <circle cx="155" cy="15" r="3" fill="var(--signal)" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="studio-specimen-foot">
+                    <span>Memorable Logo & Visuals</span>
+                    <span>Simple, Intuitive UI</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel-footer">
+                <p class="panel-lead">
+                  First impressions matter. We give your business a polished, credible look that makes customers choose you over competitors.
+                </p>
+                <a
+                  href="https://studio.archexweb.in/"
+                  class="panel-cta panel-cta--studio"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>Explore Archex Studio</span>
+                  <span class="cta-arrow" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- PANEL 3: ARCHEX GTM (Grow) -->
+            <div
+              class="lens-panel lens-panel--gtm"
+              role="tabpanel"
+              id="panel-gtm"
+              aria-labelledby="tab-gtm"
+              hidden
+            >
+              <div class="panel-header">
+                <div class="panel-eyebrow">
+                  <span class="panel-badge panel-badge--gtm">GROWTH & SALES</span>
+                  <span class="panel-status">gtm.archexweb.in</span>
+                </div>
+                <h2 class="panel-title">Find the right buyers, launch with buzz, and start selling.</h2>
+              </div>
+
+              <!-- Value-Focused Market Preview -->
+              <div class="panel-specimen specimen-gtm" aria-label="GTM Market Value">
+                <div class="gtm-telemetry-box">
+                  <div class="gtm-telemetry-head">
+                    <span>STEPS TO GET CUSTOMERS</span>
+                    <span class="gtm-signal-indicator">PRACTICAL STEPS</span>
+                  </div>
+                  <div class="gtm-vector-graph">
+                    <div class="vector-step">
+                      <span class="step-label">STEP 01</span>
+                      <span class="step-metric">Clear Messaging</span>
+                    </div>
+                    <div class="vector-arrow" aria-hidden="true">→</div>
+                    <div class="vector-step">
+                      <span class="step-label">STEP 02</span>
+                      <span class="step-metric">Product Launch</span>
+                    </div>
+                    <div class="vector-arrow" aria-hidden="true">→</div>
+                    <div class="vector-step is-highlight">
+                      <span class="step-label">STEP 03</span>
+                      <span class="step-metric">Steady Sales</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel-footer">
+                <p class="panel-lead">
+                  Even the best product needs sales. We help you explain your value clearly, run effective launches, and turn visitors into paying clients.
+                </p>
+                <a
+                  href="https://gtm.archexweb.in"
+                  class="panel-cta panel-cta--gtm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>Explore Archex GTM</span>
+                  <span class="cta-arrow" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Restrained 3-Discipline Convergence Graphic -->
+    <div class="hero-disciplines-bar" aria-label="Archex three disciplines overview">
+      <div class="discipline-pillar">
+        <div class="pillar-num">01 / CRAFT</div>
+        <div class="pillar-name">Engineering & Technology</div>
+        <div class="pillar-desc">Software engineering, digital products & systems</div>
+        <a href="https://craft.archexweb.in/" class="pillar-link" target="_blank" rel="noopener noreferrer">
+          craft.archexweb.in ↗
         </a>
       </div>
 
-      <!-- Restrained 3-Discipline Convergence Graphic -->
-      <div class="hero-disciplines-bar" aria-label="Archex three disciplines overview">
-        <div class="discipline-pillar">
-          <div class="pillar-num">01 / CRAFT</div>
-          <div class="pillar-name">Engineering & Technology</div>
-          <div class="pillar-desc">Software engineering, digital products & systems</div>
-          <a href="https://craft.archexweb.in/" class="pillar-link" target="_blank" rel="noopener noreferrer">
-            craft.archexweb.in ↗
-          </a>
-        </div>
+      <div class="pillar-divider" aria-hidden="true"></div>
 
-        <div class="pillar-divider" aria-hidden="true"></div>
+      <div class="discipline-pillar">
+        <div class="pillar-num">02 / STUDIO</div>
+        <div class="pillar-name">Design & Experience</div>
+        <div class="pillar-desc">Brand strategy, visual identity & UI/UX</div>
+        <a href="https://studio.archexweb.in/" class="pillar-link" target="_blank" rel="noopener noreferrer">
+          studio.archexweb.in ↗
+        </a>
+      </div>
 
-        <div class="discipline-pillar">
-          <div class="pillar-num">02 / STUDIO</div>
-          <div class="pillar-name">Design & Experience</div>
-          <div class="pillar-desc">Brand strategy, visual identity & UI/UX</div>
-          <a href="https://studio.archexweb.in/" class="pillar-link" target="_blank" rel="noopener noreferrer">
-            studio.archexweb.in ↗
-          </a>
-        </div>
+      <div class="pillar-divider" aria-hidden="true"></div>
 
-        <div class="pillar-divider" aria-hidden="true"></div>
-
-        <div class="discipline-pillar">
-          <div class="pillar-num">03 / GTM</div>
-          <div class="pillar-name">Market & Growth</div>
-          <div class="pillar-desc">Positioning, launch planning & growth execution</div>
-          <a href="https://gtm.archexweb.in/" class="pillar-link" target="_blank" rel="noopener noreferrer">
-            gtm.archexweb.in ↗
-          </a>
-        </div>
+      <div class="discipline-pillar">
+        <div class="pillar-num">03 / GTM</div>
+        <div class="pillar-name">Market & Growth</div>
+        <div class="pillar-desc">Positioning, launch planning & growth execution</div>
+        <a href="https://gtm.archexweb.in" class="pillar-link" target="_blank" rel="noopener noreferrer">
+          gtm.archexweb.in ↗
+        </a>
       </div>
     </div>
   </div>
 </section>
 
+<script>
+  // Interactive Lens tab switching
+  function initHeroLens() {
+    const tabs = document.querySelectorAll<HTMLButtonElement>('.lens-tab');
+    const panels = document.querySelectorAll<HTMLDivElement>('.lens-panel');
+
+    if (!tabs.length || !panels.length) return;
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const targetId = tab.getAttribute('data-target');
+        if (!targetId) return;
+
+        // Update tabs
+        tabs.forEach((t) => {
+          t.classList.remove('is-active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('is-active');
+        tab.setAttribute('aria-selected', 'true');
+
+        // Update panels
+        panels.forEach((p) => {
+          if (p.id === targetId) {
+            p.classList.add('is-active');
+            p.removeAttribute('hidden');
+          } else {
+            p.classList.remove('is-active');
+            p.setAttribute('hidden', '');
+          }
+        });
+      });
+
+      // Keyboard arrow navigation between tabs
+      tab.addEventListener('keydown', (e) => {
+        let index = Array.from(tabs).indexOf(tab);
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          const nextIndex = (index + 1) % tabs.length;
+          tabs[nextIndex].focus();
+          tabs[nextIndex].click();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          const prevIndex = (index - 1 + tabs.length) % tabs.length;
+          tabs[prevIndex].focus();
+          tabs[prevIndex].click();
+        }
+      });
+    });
+  }
+
+  // Initialize on DOM ready & view transitions
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroLens);
+  } else {
+    initHeroLens();
+  }
+</script>
+
 <style>
   .hero {
     position: relative;
     border-bottom: 1px solid var(--line-soft);
+    padding-top: clamp(32px, 5vw, 64px);
+    overflow: hidden;
+  }
+
+  /* Architectural Grid Background */
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: 
+      linear-gradient(to right, rgba(20, 20, 19, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(20, 20, 19, 0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at 50% 30%, black 40%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 40%, transparent 80%);
+  }
+
+  .hero-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(36px, 5vw, 64px);
+    align-items: center;
+    margin-bottom: clamp(40px, 6vw, 64px);
   }
 
   .hero-meta-row {
@@ -92,7 +412,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    margin-bottom: clamp(24px, 3.5vw, 36px);
+    margin-bottom: clamp(20px, 3vw, 32px);
     flex-wrap: wrap;
   }
 
@@ -103,18 +423,40 @@
     color: var(--ink-graphite);
   }
 
+  .hero-ecosystem-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    background: var(--paper-surface);
+    border: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+
+  .status-ping {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+  }
+
   .hero-content {
-    max-width: 1040px;
+    max-width: 640px;
   }
 
   .hero-headline {
     font-family: var(--serif);
     font-weight: 400;
-    font-size: clamp(42px, 6.5vw, 88px);
-    line-height: 1.06;
+    font-size: clamp(40px, 5.5vw, 76px);
+    line-height: 1.05;
     letter-spacing: -0.025em;
     color: var(--ink);
-    margin-bottom: clamp(24px, 3.5vw, 36px);
+    margin-bottom: clamp(20px, 3vw, 28px);
   }
 
   .hl-accent {
@@ -127,32 +469,436 @@
   }
 
   .hero-description {
-    font-size: clamp(18px, 2vw, 24px);
+    font-size: clamp(17px, 1.8vw, 21px);
     line-height: 1.5;
     color: var(--ink-graphite);
-    max-width: 780px;
-    margin-bottom: clamp(32px, 4.5vw, 48px);
+    margin-bottom: 20px;
+  }
+
+  .hero-narrative-note {
+    border-left: 2px solid var(--signal);
+    padding-left: 16px;
+    margin-bottom: clamp(28px, 4vw, 40px);
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink-muted);
   }
 
   .hero-actions {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 16px;
-    margin-bottom: clamp(44px, 6vw, 68px);
+    gap: 14px;
   }
 
   .cta-explore {
-    padding: 15px 28px;
-    font-size: 16px;
+    padding: 14px 26px;
+    font-size: 15px;
   }
 
   .cta-contact {
-    padding: 15px 26px;
-    font-size: 16px;
+    padding: 14px 24px;
+    font-size: 15px;
   }
 
-  /* Disciplines preview bar */
+  /* ── Lens Console Styling ─────────────────────────────────────────── */
+  .hero-lens-container {
+    width: 100%;
+  }
+
+  .lens-console {
+    background: #0f1015;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .lens-console:hover {
+    box-shadow: 0 24px 56px -12px rgba(0, 0, 0, 0.45);
+  }
+
+  .lens-chrome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: #14161f;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .lens-dots {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+
+  .dot--red { background: #ff5f56; }
+  .dot--amber { background: #ffbd2e; }
+  .dot--green { background: #27c93f; }
+
+  .lens-tabs {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 3px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .lens-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: var(--mono);
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .lens-tab:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .lens-tab.is-active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .tab-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .tab-dot--craft { background: #f59e0b; }
+  .tab-dot--studio { background: #e07a5f; }
+  .tab-dot--gtm { background: #38bdf8; }
+
+  /* ── Panels ─────────────────────────────────────────────────────────── */
+  .lens-screens {
+    position: relative;
+    padding: 24px;
+  }
+
+  .lens-panel {
+    display: none;
+    flex-direction: column;
+    gap: 18px;
+    color: #ffffff;
+  }
+
+  .lens-panel.is-active {
+    display: flex;
+    animation: panelFade 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes panelFade {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .panel-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .panel-eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .panel-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(245, 158, 11, 0.12);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+
+  .panel-badge--studio {
+    background: rgba(224, 122, 95, 0.15);
+    color: #e07a5f;
+    border-color: rgba(224, 122, 95, 0.35);
+  }
+
+  .panel-badge--gtm {
+    background: rgba(56, 189, 248, 0.12);
+    color: #38bdf8;
+    border-color: rgba(56, 189, 248, 0.3);
+  }
+
+  .panel-status {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  .panel-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: #f3f4f6;
+  }
+
+  /* Specimen Box */
+  .panel-specimen {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  /* Craft Specimen */
+  .craft-blueprint {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .blueprint-layer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(245, 158, 11, 0.15);
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+
+  .blueprint-layer:hover {
+    background: rgba(245, 158, 11, 0.08);
+    border-color: rgba(245, 158, 11, 0.4);
+  }
+
+  .layer-code {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: #f59e0b;
+    letter-spacing: 0.05em;
+  }
+
+  .layer-title {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: #e5e7eb;
+  }
+
+  .layer-pill {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  /* Studio Specimen */
+  .studio-specimen-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #fdfcf9;
+    color: var(--ink);
+    padding: 16px;
+    border-radius: 6px;
+  }
+
+  .studio-specimen-top,
+  .studio-specimen-foot {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+  }
+
+  .studio-specimen-hero {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 4px 0;
+  }
+
+  .specimen-headline {
+    font-family: var(--serif);
+    font-size: 30px;
+    line-height: 0.95;
+    color: var(--ink);
+  }
+
+  .specimen-curve svg {
+    width: 120px;
+    height: 45px;
+  }
+
+  /* GTM Specimen */
+  .gtm-telemetry-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .gtm-telemetry-head {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.06em;
+  }
+
+  .gtm-signal-indicator {
+    color: #38bdf8;
+    font-weight: 600;
+  }
+
+  .gtm-vector-graph {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    padding: 12px;
+    border-radius: 6px;
+  }
+
+  .vector-step {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .vector-step.is-highlight .step-metric {
+    color: #38bdf8;
+    font-weight: 600;
+  }
+
+  .step-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .step-metric {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: #e5e7eb;
+  }
+
+  .vector-arrow {
+    color: rgba(255, 255, 255, 0.3);
+    font-family: var(--mono);
+  }
+
+  /* Panel Footer & Magnetic CTAs */
+  .panel-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-top: 4px;
+  }
+
+  .panel-lead {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+  }
+
+  .panel-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 18px;
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .panel-cta--craft {
+    background: #f59e0b;
+    color: #0c0e14;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+  }
+
+  .panel-cta--craft:hover {
+    background: #fbbf24;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45);
+  }
+
+  .panel-cta--studio {
+    background: #e07a5f;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(224, 122, 95, 0.35);
+  }
+
+  .panel-cta--studio:hover {
+    background: #ea8a71;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(224, 122, 95, 0.5);
+  }
+
+  .panel-cta--gtm {
+    background: #38bdf8;
+    color: #0c0e14;
+    box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+  }
+
+  .panel-cta--gtm:hover {
+    background: #60a5fa;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.45);
+  }
+
+  .cta-arrow {
+    font-size: 14px;
+    transition: transform 0.2s ease;
+  }
+
+  .panel-cta:hover .cta-arrow {
+    transform: translate(2px, -2px);
+  }
+
+  /* ── Disciplines preview bar ──────────────────────────────────────── */
   .hero-disciplines-bar {
     display: grid;
     grid-template-columns: 1fr auto 1fr auto 1fr;
@@ -167,69 +913,86 @@
   .discipline-pillar {
     display: flex;
     flex-direction: column;
-    gap: 6px;
   }
 
   .pillar-num {
     font-family: var(--mono);
-    font-size: 10.5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.08em;
     color: var(--signal);
-    font-weight: 600;
+    margin-bottom: 8px;
+    font-weight: 500;
   }
 
   .pillar-name {
-    font-family: var(--sans);
-    font-size: clamp(16px, 1.4vw, 18px);
-    font-weight: 600;
+    font-family: var(--serif);
+    font-size: clamp(18px, 1.8vw, 22px);
+    font-weight: 400;
     color: var(--ink);
-    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+    line-height: 1.25;
   }
 
   .pillar-desc {
-    font-family: var(--sans);
     font-size: 13.5px;
+    line-height: 1.5;
     color: var(--ink-graphite);
-    line-height: 1.45;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
+    flex-grow: 1;
   }
 
   .pillar-link {
     font-family: var(--mono);
-    font-size: 11.5px;
-    color: var(--ink-soft);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink);
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    margin-top: auto;
-    transition: color var(--transition-fast);
+    padding-top: 8px;
+    border-top: 1px solid var(--line-soft);
+    transition: color var(--transition-fast), transform var(--transition-fast);
   }
 
   .pillar-link:hover {
     color: var(--signal);
+    transform: translateX(2px);
   }
 
   .pillar-divider {
     width: 1px;
-    background-color: var(--line);
+    background-color: var(--line-soft);
   }
 
-  @media (max-width: 860px) {
+  /* Responsive Adjustments */
+  @media (max-width: 980px) {
+    .hero-layout {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+
+    .hero-content {
+      max-width: 100%;
+    }
+
     .hero-disciplines-bar {
       grid-template-columns: 1fr;
-      gap: 20px;
+      gap: 24px;
     }
+
     .pillar-divider {
       width: 100%;
       height: 1px;
     }
-    .hero-actions {
-      flex-direction: column;
-      align-items: stretch;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lens-panel.is-active {
+      animation: none;
     }
-    .hero-actions .btn-base {
-      width: 100%;
+    .panel-cta, .panel-cta:hover, .cta-arrow {
+      transition: none;
+      transform: none !important;
     }
   }
 </style>

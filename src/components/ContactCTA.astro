@@ -1,5 +1,5 @@
 ---
-// ContactCTA.astro — Homepage Closing Contact CTA
+// ContactCTA.astro — Homepage Closing Contact CTA & Practice Gateway
 ---
 
 <section class="section-wrapper cta-section" id="contact-cta" aria-labelledby="cta-heading">
@@ -16,6 +16,39 @@
       <p class="cta-description">
         Tell us what you are working on. We'll help direct your enquiry to the right practice.
       </p>
+
+      <!-- Practice Decision Matrix -->
+      <div class="cta-practice-matrix" aria-label="Direct practice pathways">
+        <div class="practice-choice-card">
+          <div class="choice-tag">01 / CRAFT (BUILD)</div>
+          <h3 class="choice-title">Websites & Software</h3>
+          <p class="choice-desc">Need a fast website, custom software platform, or helpful AI tools?</p>
+          <a href="https://craft.archexweb.in/" class="choice-link" target="_blank" rel="noopener noreferrer">
+            <span>craft.archexweb.in</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="practice-choice-card">
+          <div class="choice-tag">02 / STUDIO (DESIGN)</div>
+          <h3 class="choice-title">Brand & UI/UX</h3>
+          <p class="choice-desc">Need a premium brand identity, modern logo, or clean screen designs?</p>
+          <a href="https://studio.archexweb.in/" class="choice-link" target="_blank" rel="noopener noreferrer">
+            <span>studio.archexweb.in</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="practice-choice-card">
+          <div class="choice-tag">03 / GTM (GROW)</div>
+          <h3 class="choice-title">Launch & Sales</h3>
+          <p class="choice-desc">Need help launching your product and turning visitors into paying buyers?</p>
+          <a href="https://gtm.archexweb.in" class="choice-link" target="_blank" rel="noopener noreferrer">
+            <span>gtm.archexweb.in</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
 
       <div class="cta-actions">
         <a
@@ -37,9 +70,21 @@
           <a href="https://studio.archexweb.in/" class="practice-pill" target="_blank" rel="noopener noreferrer">
             Studio ↗
           </a>
-          <a href="https://gtm.archexweb.in/" class="practice-pill" target="_blank" rel="noopener noreferrer">
+          <a href="https://gtm.archexweb.in" class="practice-pill" target="_blank" rel="noopener noreferrer">
             GTM ↗
           </a>
+        </div>
+      </div>
+
+      <!-- Direct Official Contact Channels -->
+      <div class="cta-channels">
+        <span class="channels-title">Direct communication:</span>
+        <div class="channels-list">
+          <a href="mailto:hello@archexweb.in" class="channel-link">hello@archexweb.in</a>
+          <span class="channel-sep" aria-hidden="true">·</span>
+          <a href="mailto:privacy@archexweb.in" class="channel-link">privacy@archexweb.in</a>
+          <span class="channel-sep" aria-hidden="true">·</span>
+          <a href="/contact" class="channel-link">Founder Note</a>
         </div>
       </div>
     </div>
@@ -56,7 +101,7 @@
   .cta-card {
     background-color: var(--paper-soft);
     border: 1px solid var(--line);
-    border-radius: 4px;
+    border-radius: 12px;
     padding: clamp(36px, 6vw, 72px) clamp(24px, 5vw, 64px);
     text-align: center;
     display: flex;
@@ -64,15 +109,16 @@
     align-items: center;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 12px 36px -12px rgba(0, 0, 0, 0.06);
   }
 
   .cta-card::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 20%;
-    right: 20%;
-    height: 1px;
+    left: 15%;
+    right: 15%;
+    height: 2px;
     background: linear-gradient(90deg, transparent, var(--signal), transparent);
   }
 
@@ -81,14 +127,14 @@
     align-items: center;
     justify-content: center;
     gap: 16px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     flex-wrap: wrap;
   }
 
   .cta-microcopy {
     font-family: var(--serif);
     font-style: italic;
-    font-size: 14px;
+    font-size: 15px;
     color: var(--ink-graphite);
   }
 
@@ -100,7 +146,7 @@
     letter-spacing: -0.025em;
     color: var(--ink);
     margin-bottom: 16px;
-    max-width: 760px;
+    max-width: 720px;
   }
 
   .hl-dot {
@@ -108,75 +154,189 @@
   }
 
   .cta-description {
-    font-size: clamp(17px, 1.6vw, 21px);
-    color: var(--ink-graphite);
-    margin-bottom: clamp(32px, 4.5vw, 44px);
-    max-width: 580px;
+    font-size: clamp(16px, 1.8vw, 20px);
     line-height: 1.5;
+    color: var(--ink-graphite);
+    max-width: 600px;
+    margin-bottom: clamp(32px, 4vw, 44px);
   }
 
+  /* ── Practice Decision Matrix ─────────────────────────────────────── */
+  .cta-practice-matrix {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: clamp(32px, 4.5vw, 48px);
+    text-align: left;
+  }
+
+  .practice-choice-card {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 0.22s ease;
+  }
+
+  .practice-choice-card:hover {
+    border-color: var(--line-strong);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.08);
+  }
+
+  .choice-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--signal);
+  }
+
+  .choice-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .choice-desc {
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--ink-graphite);
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .choice-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--line-soft);
+    transition: color 0.2s ease;
+  }
+
+  .choice-link:hover {
+    color: var(--signal);
+  }
+
+  /* ── Action Button ────────────────────────────────────────────────── */
   .cta-actions {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
-    margin-bottom: 32px;
-    width: 100%;
+    margin-bottom: 28px;
   }
 
   .cta-btn {
     padding: 16px 36px;
     font-size: 16px;
+    letter-spacing: 0.03em;
   }
 
   .cta-practice-links {
     display: flex;
     align-items: center;
     gap: 12px;
-    font-size: 13px;
-    color: var(--ink-faint);
     flex-wrap: wrap;
     justify-content: center;
-    padding-top: 20px;
-    border-top: 1px dashed var(--line);
+    margin-bottom: 24px;
   }
 
   .practice-links-label {
     font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    font-size: 12px;
+    color: var(--ink-faint);
   }
 
   .practice-links-group {
     display: flex;
-    gap: 8px;
     align-items: center;
+    gap: 8px;
   }
 
   .practice-pill {
     font-family: var(--mono);
-    font-size: 11px;
-    color: var(--ink-soft);
-    padding: 4px 10px;
-    background-color: #ffffff;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    background-color: var(--paper-surface);
     border: 1px solid var(--line);
-    border-radius: 2px;
-    transition: border-color var(--transition-fast), color var(--transition-fast);
+    color: var(--ink);
+    transition: all var(--transition-fast);
   }
 
   .practice-pill:hover {
-    border-color: var(--signal);
-    color: var(--signal);
+    background-color: var(--ink);
+    color: #ffffff;
+    border-color: var(--ink);
+    transform: translateY(-1px);
   }
 
-  @media (max-width: 540px) {
-    .cta-actions {
-      flex-direction: column;
+  /* ── Channels List ────────────────────────────────────────────────── */
+  .cta-channels {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--line-soft);
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .channels-title {
+    color: var(--ink-muted);
+  }
+
+  .channels-list {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .channel-link {
+    color: var(--ink-graphite);
+    transition: color 0.2s ease;
+  }
+
+  .channel-link:hover {
+    color: var(--signal);
+    text-decoration: underline;
+  }
+
+  .channel-sep {
+    color: var(--line-strong);
+  }
+
+  /* Responsive Rules */
+  @media (max-width: 820px) {
+    .cta-practice-matrix {
+      grid-template-columns: 1fr;
     }
-    .cta-btn {
-      width: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .practice-choice-card, .practice-pill, .cta-btn {
+      transition: none !important;
+      transform: none !important;
     }
   }
 </style>
-
