@@ -10,7 +10,7 @@
       <span class="dock-brand-name">archex</span><span class="dock-dot">.</span>
     </a>
 
-    <div class="dock-divider" aria-hidden="true"></div>
+    <div class="dock-divider dock-divider--brand" aria-hidden="true"></div>
 
     <!-- Practice Switcher Links -->
     <nav class="dock-nav" aria-label="Ecosystem practices quick links">
@@ -116,7 +116,9 @@
     pointer-events: none;
     z-index: 990;
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
-    max-width: calc(100vw - 32px);
+    width: max-content;
+    max-width: calc(100vw - 24px);
+    box-sizing: border-box;
   }
 
   .ecosystem-dock.is-visible {
@@ -137,6 +139,8 @@
     border-radius: 9999px;
     padding: 6px 12px 6px 16px;
     color: #ffffff;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .dock-brand {
@@ -268,15 +272,22 @@
   @media (max-width: 640px) {
     .ecosystem-dock {
       bottom: 16px;
+      max-width: calc(100vw - 20px);
+    }
+
+    /* On mobile viewports under 640px, hide the dock brand wordmark to give full space to the 3 practices and Contact */
+    .dock-brand,
+    .dock-divider--brand {
+      display: none;
     }
 
     .dock-shell {
-      padding: 5px 8px 5px 12px;
-      gap: 6px;
+      padding: 5px 8px 5px 10px;
+      gap: 4px;
     }
 
-    .dock-brand-name {
-      font-size: 14px;
+    .dock-list {
+      gap: 2px;
     }
 
     .dock-link {
@@ -285,9 +296,44 @@
       gap: 4px;
     }
 
+    .dock-indicator {
+      width: 5px;
+      height: 5px;
+    }
+
+    .dock-arrow {
+      font-size: 9px;
+    }
+
     .dock-contact-btn {
       padding: 5px 10px;
+      font-size: 10.5px;
+      gap: 4px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .ecosystem-dock {
+      max-width: calc(100vw - 12px);
+    }
+
+    .dock-shell {
+      padding: 4px 6px 4px 8px;
+      gap: 2px;
+    }
+
+    .dock-link {
+      padding: 4px 5px;
       font-size: 10px;
+      gap: 3px;
+    }
+
+    .dock-contact-btn {
+      padding: 4px 8px;
+      font-size: 10px;
+      gap: 3px;
     }
   }
 
