@@ -4,20 +4,18 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "cross-env NAPI_RS_FORCE_WASI=true astro dev",
-    "build": "cross-env NAPI_RS_FORCE_WASI=true astro build",
-    "preview": "cross-env NAPI_RS_FORCE_WASI=true astro preview",
-    "check": "cross-env NAPI_RS_FORCE_WASI=true astro check",
-    "test:e2e": "cross-env NAPI_RS_FORCE_WASI=true playwright test"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
-    "@bruits/satteri-wasm32-wasi": "^0.10.5",
     "astro": "^7.4.7"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
     "@playwright/test": "^1.65.0",
-    "cross-env": "^10.1.0",
     "typescript": "^5.9.2"
   }
 }
